@@ -4,36 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1A1208">
 <title>BarrancaXperience</title>
+<link rel="manifest" href="manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 
 :root {
-  --bg:     #F7F4F0;
-  --bg2:    #EDEAE5;
-  --white:  #FFFFFF;
-  --ink:    #1A1208;
-  --ink2:   #6B5E4E;
-  --ink3:   #B0A090;
-  --accent: #D4601A;
-  --accent2:#F0A050;
-  --blue:   #2B6CB0;
-  --green:  #276749;
-  --border: rgba(0,0,0,0.07);
-  --shadow: 0 2px 12px rgba(0,0,0,0.07);
-  --shadow2: 0 8px 32px rgba(0,0,0,0.12);
-  --r:      16px;
-  --r2:     24px;
+  --bg:#F7F4F0; --bg2:#EDEAE5; --white:#FFFFFF;
+  --ink:#1A1208; --ink2:#6B5E4E; --ink3:#B0A090;
+  --accent:#D4601A; --accent2:#F0A050;
+  --blue:#2B6CB0; --green:#276749;
+  --border:rgba(0,0,0,0.07);
+  --shadow:0 2px 12px rgba(0,0,0,0.07);
+  --shadow2:0 8px 32px rgba(0,0,0,0.12);
+  --r:16px; --r2:24px;
 }
 
-html, body {
-  width:100%; height:100%; overflow:hidden;
-  background: var(--bg);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: var(--ink);
-}
-
+html,body { width:100%; height:100%; overflow:hidden; background:var(--bg); font-family:'Plus Jakarta Sans',sans-serif; color:var(--ink); }
 body { display:flex; flex-direction:column; position:fixed; inset:0; }
 
 /* ── SPLASH ── */
@@ -42,15 +31,14 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
   background:#1A1208;
   display:flex; flex-direction:column;
   align-items:center; justify-content:center; gap:12px;
-  transition: opacity .5s ease;
+  transition:opacity .6s ease;
 }
 #splash.out { opacity:0; pointer-events:none; }
 .sp-logo { font-size:2rem; font-weight:800; color:#fff; letter-spacing:-0.5px; }
 .sp-logo span { color:var(--accent2); }
 .sp-city { font-size:.75rem; font-weight:500; color:rgba(255,255,255,.4); letter-spacing:3px; text-transform:uppercase; }
 .sp-bar { width:48px; height:3px; background:rgba(255,255,255,.12); border-radius:2px; margin-top:8px; overflow:hidden; }
-.sp-bar::after { content:''; display:block; height:100%; width:0; background:var(--accent2); border-radius:2px; animation:load 2s ease forwards; }
-@keyframes load { to { width:100%; } }
+.sp-progress { height:100%; width:0; background:var(--accent2); border-radius:2px; transition:width 2s ease; }
 
 /* ── STATUS ── */
 .status { height:44px; flex-shrink:0; padding:0 20px; display:flex; align-items:center; justify-content:space-between; background:var(--bg); }
@@ -58,20 +46,10 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .s-icons { font-size:.78rem; color:var(--ink); display:flex; gap:5px; align-items:center; }
 
 /* ── HEADER ── */
-.header {
-  flex-shrink:0; padding:4px 20px 16px;
-  background:var(--bg);
-  display:flex; align-items:center; justify-content:space-between;
-}
+.header { flex-shrink:0; padding:4px 20px 16px; background:var(--bg); display:flex; align-items:center; justify-content:space-between; }
 .h-title { font-size:1.5rem; font-weight:800; color:var(--ink); letter-spacing:-.5px; }
 .h-sub { font-size:.72rem; font-weight:500; color:var(--ink3); margin-top:1px; }
-.h-btn {
-  width:40px; height:40px; border-radius:50%;
-  background:var(--white); border:none;
-  box-shadow:var(--shadow); cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  font-size:1rem; transition:transform .15s;
-}
+.h-btn { width:40px; height:40px; border-radius:50%; background:var(--white); border:none; box-shadow:var(--shadow); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1rem; transition:transform .15s; }
 .h-btn:active { transform:scale(.93); }
 
 /* ── SCROLL ── */
@@ -84,17 +62,8 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
 
 /* ── BOTTOM NAV ── */
-.bnav {
-  flex-shrink:0; height:72px;
-  background:var(--white);
-  border-top:1px solid var(--border);
-  display:grid; grid-template-columns:repeat(5,1fr);
-  padding-bottom:env(safe-area-inset-bottom,0);
-}
-.ni {
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:4px; cursor:pointer; transition:all .15s; border:none; background:none;
-}
+.bnav { flex-shrink:0; height:72px; background:var(--white); border-top:1px solid var(--border); display:grid; grid-template-columns:repeat(5,1fr); padding-bottom:env(safe-area-inset-bottom,0); }
+.ni { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; cursor:pointer; transition:all .15s; border:none; background:none; }
 .ni:active { transform:scale(.9); }
 .ni-icon { font-size:1.3rem; transition:transform .2s; }
 .ni-label { font-size:.58rem; font-weight:600; color:var(--ink3); letter-spacing:.3px; text-transform:uppercase; transition:color .2s; }
@@ -102,24 +71,9 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .ni.active .ni-label { color:var(--accent); font-weight:700; }
 
 /* ── HOME ── */
-.home-banner {
-  margin:12px 16px;
-  background:var(--ink);
-  border-radius:var(--r2); overflow:hidden;
-  padding:28px 24px; position:relative;
-}
-.home-banner::before {
-  content:''; position:absolute; inset:0;
-  background: radial-gradient(ellipse at 85% 15%, rgba(212,96,26,.5) 0%, transparent 55%),
-              radial-gradient(ellipse at 15% 85%, rgba(43,108,176,.3) 0%, transparent 50%);
-}
-.hb-tag {
-  position:relative; display:inline-flex; align-items:center; gap:6px;
-  background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15);
-  border-radius:100px; padding:5px 12px;
-  font-size:.65rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--accent2);
-  margin-bottom:14px;
-}
+.home-banner { margin:12px 16px; background:var(--ink); border-radius:var(--r2); overflow:hidden; padding:28px 24px; position:relative; }
+.home-banner::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 85% 15%,rgba(212,96,26,.5) 0%,transparent 55%),radial-gradient(ellipse at 15% 85%,rgba(43,108,176,.3) 0%,transparent 50%); }
+.hb-tag { position:relative; display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15); border-radius:100px; padding:5px 12px; font-size:.65rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--accent2); margin-bottom:14px; }
 .hb-tag::before { content:'●'; font-size:.4rem; color:var(--accent2); animation:blink 1.5s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 .hb-title { position:relative; font-size:2rem; font-weight:800; color:#fff; letter-spacing:-.5px; line-height:1.1; }
@@ -130,18 +84,12 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .hb-stat:not(:last-child) { border-right:1px solid rgba(255,255,255,.1); }
 .hb-num { font-size:1.4rem; font-weight:800; color:var(--accent2); }
 .hb-lbl { font-size:.6rem; color:rgba(255,255,255,.4); text-transform:uppercase; letter-spacing:1px; margin-top:1px; }
-
 .section-title { font-size:.7rem; font-weight:700; color:var(--ink3); letter-spacing:2px; text-transform:uppercase; padding:20px 16px 10px; }
 
 /* Quick pills */
 .quick-row { display:flex; gap:8px; padding:0 16px; overflow-x:auto; }
 .quick-row::-webkit-scrollbar { display:none; }
-.qpill {
-  flex-shrink:0; display:flex; align-items:center; gap:8px;
-  background:var(--white); border:1px solid var(--border);
-  border-radius:100px; padding:10px 18px;
-  box-shadow:var(--shadow); cursor:pointer; transition:all .15s;
-}
+.qpill { flex-shrink:0; display:flex; align-items:center; gap:8px; background:var(--white); border:1px solid var(--border); border-radius:100px; padding:10px 18px; box-shadow:var(--shadow); cursor:pointer; transition:all .15s; }
 .qpill:active { transform:scale(.95); background:var(--accent); }
 .qpill:active .qp-label { color:#fff; }
 .qp-icon { font-size:1rem; }
@@ -152,11 +100,7 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .hscroll::-webkit-scrollbar { display:none; }
 
 /* Place mini card */
-.pmc {
-  flex-shrink:0; width:140px;
-  background:var(--white); border-radius:var(--r);
-  box-shadow:var(--shadow); overflow:hidden; cursor:pointer; transition:transform .15s;
-}
+.pmc { flex-shrink:0; width:140px; background:var(--white); border-radius:var(--r); box-shadow:var(--shadow); overflow:hidden; cursor:pointer; transition:transform .15s; }
 .pmc:active { transform:scale(.96); }
 .pmc-img { height:90px; display:flex; align-items:center; justify-content:center; font-size:2.8rem; background:var(--bg); }
 .pmc-body { padding:10px; }
@@ -164,13 +108,7 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .pmc-tag { font-size:.62rem; font-weight:600; color:var(--accent); }
 
 /* Weather strip */
-.wstrip {
-  margin:8px 16px;
-  background:var(--white); border-radius:var(--r);
-  box-shadow:var(--shadow); padding:16px 18px;
-  display:flex; align-items:center; gap:0; cursor:pointer;
-  transition:transform .15s;
-}
+.wstrip { margin:8px 16px; background:var(--white); border-radius:var(--r); box-shadow:var(--shadow); padding:16px 18px; display:flex; align-items:center; gap:0; cursor:pointer; transition:transform .15s; }
 .wstrip:active { transform:scale(.98); }
 .ws-info { flex:1; }
 .ws-city { font-size:.65rem; font-weight:600; color:var(--ink3); text-transform:uppercase; letter-spacing:1.5px; }
@@ -178,36 +116,21 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .ws-desc { font-size:.75rem; color:var(--ink2); }
 .ws-icon { font-size:2.5rem; }
 
-/* ── SHARED COMPONENTS ── */
-.search-box {
-  margin:12px 16px;
-  background:var(--white); border:1.5px solid transparent; border-radius:var(--r);
-  padding:13px 16px; display:flex; align-items:center; gap:10px;
-  box-shadow:var(--shadow); transition:border-color .2s;
-}
+/* ── SHARED ── */
+.search-box { margin:12px 16px; background:var(--white); border:1.5px solid transparent; border-radius:var(--r); padding:13px 16px; display:flex; align-items:center; gap:10px; box-shadow:var(--shadow); transition:border-color .2s; }
 .search-box:focus-within { border-color:var(--accent); }
 .search-box input { flex:1; border:none; background:none; outline:none; font-size:.9rem; font-family:inherit; color:var(--ink); }
 .search-box input::placeholder { color:var(--ink3); }
 .sb-icon { font-size:1rem; color:var(--ink3); }
-
 .chips { display:flex; gap:8px; padding:0 16px; overflow-x:auto; }
 .chips::-webkit-scrollbar { display:none; }
-.chip {
-  flex-shrink:0; padding:7px 16px; border-radius:100px;
-  background:var(--white); border:1.5px solid var(--border);
-  font-size:.72rem; font-weight:600; color:var(--ink2); cursor:pointer; transition:all .15s;
-}
+.chip { flex-shrink:0; padding:7px 16px; border-radius:100px; background:var(--white); border:1.5px solid var(--border); font-size:.72rem; font-weight:600; color:var(--ink2); cursor:pointer; transition:all .15s; }
 .chip.on { background:var(--accent); color:#fff; border-color:var(--accent); }
 .chip:active { transform:scale(.94); }
-
-/* List cards */
 .list { padding:12px 16px; display:flex; flex-direction:column; gap:10px; }
 
-.row-card {
-  background:var(--white); border-radius:var(--r);
-  box-shadow:var(--shadow); overflow:hidden;
-  display:flex; cursor:pointer; transition:transform .15s;
-}
+/* Row cards */
+.row-card { background:var(--white); border-radius:var(--r); box-shadow:var(--shadow); overflow:hidden; display:flex; cursor:pointer; transition:transform .15s; }
 .row-card:active { transform:scale(.98); }
 .rc-icon { width:72px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:2rem; background:var(--bg); }
 .rc-body { flex:1; padding:13px 14px; }
@@ -218,10 +141,7 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .rc-arr { align-self:center; padding-right:14px; color:var(--ink3); font-size:1.1rem; }
 
 /* Hotel card */
-.hcard {
-  background:var(--white); border-radius:var(--r2);
-  box-shadow:var(--shadow); overflow:hidden; cursor:pointer; transition:transform .15s;
-}
+.hcard { background:var(--white); border-radius:var(--r2); box-shadow:var(--shadow); overflow:hidden; cursor:pointer; transition:transform .15s; }
 .hcard:active { transform:scale(.98); }
 .hc-top { padding:16px; display:flex; gap:12px; align-items:flex-start; }
 .hc-ico { width:52px; height:52px; border-radius:14px; background:var(--bg); display:flex; align-items:center; justify-content:center; font-size:1.6rem; flex-shrink:0; }
@@ -239,22 +159,14 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .hc-foot { border-top:1px solid var(--border); padding:12px 16px; display:flex; gap:8px; align-items:center; }
 .hc-price { font-size:1rem; font-weight:800; color:var(--ink); margin-right:auto; }
 .hc-price small { font-size:.65rem; font-weight:400; color:var(--ink3); }
-.hbtn {
-  padding:9px 14px; border-radius:10px; border:none; cursor:pointer;
-  font-size:.68rem; font-weight:700; letter-spacing:.3px; text-transform:uppercase;
-  text-decoration:none; display:inline-flex; align-items:center; gap:4px;
-  transition:transform .15s;
-}
+.hbtn { padding:9px 14px; border-radius:10px; border:none; cursor:pointer; font-size:.68rem; font-weight:700; letter-spacing:.3px; text-transform:uppercase; text-decoration:none; display:inline-flex; align-items:center; gap:4px; transition:transform .15s; }
 .hbtn:active { transform:scale(.93); }
 .hbtn-c { background:rgba(39,103,73,.1); color:var(--green); }
 .hbtn-m { background:rgba(43,108,176,.1); color:var(--blue); }
 .hbtn-b { background:var(--accent); color:#fff; }
 
 /* Restaurant card */
-.rcard {
-  background:var(--white); border-radius:var(--r2);
-  box-shadow:var(--shadow); padding:16px; cursor:pointer; transition:transform .15s;
-}
+.rcard { background:var(--white); border-radius:var(--r2); box-shadow:var(--shadow); padding:16px; cursor:pointer; transition:transform .15s; }
 .rcard:active { transform:scale(.98); }
 .rcard-top { display:flex; gap:12px; align-items:flex-start; margin-bottom:8px; }
 .rcard-ico { font-size:2rem; flex-shrink:0; }
@@ -265,12 +177,7 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .rcard-addr { font-size:.72rem; color:var(--ink3); margin-bottom:8px; }
 .rcard-desc { font-size:.75rem; color:var(--ink2); line-height:1.5; margin-bottom:10px; }
 .rcard-btns { display:flex; gap:7px; flex-wrap:wrap; }
-.rbtn {
-  padding:8px 14px; border-radius:10px; border:none; cursor:pointer;
-  font-size:.67rem; font-weight:700; letter-spacing:.3px; text-transform:uppercase;
-  text-decoration:none; display:inline-flex; align-items:center; gap:4px;
-  transition:transform .15s;
-}
+.rbtn { padding:8px 14px; border-radius:10px; border:none; cursor:pointer; font-size:.67rem; font-weight:700; letter-spacing:.3px; text-transform:uppercase; text-decoration:none; display:inline-flex; align-items:center; gap:4px; transition:transform .15s; }
 .rbtn:active { transform:scale(.93); }
 .rbtn-w { background:rgba(37,211,102,.12); color:#1a9a4a; }
 .rbtn-m { background:rgba(43,108,176,.1); color:var(--blue); }
@@ -278,16 +185,9 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 
 /* Sector */
 .sec-item { background:var(--white); border-radius:var(--r); box-shadow:var(--shadow); overflow:hidden; }
-.sec-head {
-  padding:14px 16px; display:flex; align-items:center; gap:12px; cursor:pointer;
-}
+.sec-head { padding:14px 16px; display:flex; align-items:center; gap:12px; cursor:pointer; }
 .sec-head:active { opacity:.8; }
-.sec-num {
-  width:36px; height:36px; border-radius:10px;
-  background:rgba(212,96,26,.1); color:var(--accent);
-  display:flex; align-items:center; justify-content:center;
-  font-size:.75rem; font-weight:800; flex-shrink:0;
-}
+.sec-num { width:36px; height:36px; border-radius:10px; background:rgba(212,96,26,.1); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:800; flex-shrink:0; }
 .sec-meta { flex:1; }
 .sec-name { font-size:.85rem; font-weight:700; color:var(--ink); }
 .sec-count { font-size:.65rem; color:var(--ink3); margin-top:1px; }
@@ -300,23 +200,10 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .hood { background:var(--bg); color:var(--ink2); font-size:.68rem; padding:4px 10px; border-radius:100px; }
 
 /* Detail panel */
-.panel {
-  position:fixed; inset:0; z-index:500; background:var(--bg);
-  transform:translateX(100%); transition:transform .35s cubic-bezier(.32,.72,0,1);
-  display:flex; flex-direction:column;
-}
+.panel { position:fixed; inset:0; z-index:500; background:var(--bg); transform:translateX(100%); transition:transform .35s cubic-bezier(.32,.72,0,1); display:flex; flex-direction:column; }
 .panel.open { transform:translateX(0); }
-.panel-head {
-  padding:50px 20px 20px;
-  display:flex; align-items:flex-end; gap:14px; flex-shrink:0;
-}
-.panel-back {
-  width:40px; height:40px; border-radius:50%;
-  background:var(--white); border:1px solid var(--border);
-  box-shadow:var(--shadow); cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  font-size:1rem; flex-shrink:0;
-}
+.panel-head { padding:50px 20px 20px; display:flex; align-items:flex-end; gap:14px; flex-shrink:0; }
+.panel-back { width:40px; height:40px; border-radius:50%; background:var(--white); border:1px solid var(--border); box-shadow:var(--shadow); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
 .panel-back:active { transform:scale(.9); }
 .panel-emoji { font-size:2.5rem; }
 .panel-titles { flex:1; }
@@ -330,38 +217,24 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .ps-tags { display:flex; gap:6px; flex-wrap:wrap; }
 .ps-tag { font-size:.7rem; font-weight:600; color:var(--accent); background:rgba(212,96,26,.08); border:1px solid rgba(212,96,26,.15); padding:4px 12px; border-radius:100px; }
 .panel-actions { padding:16px 20px; border-top:1px solid var(--border); display:flex; gap:10px; flex-shrink:0; }
-.pa-btn {
-  flex:1; padding:14px; border-radius:14px; border:none;
-  font-size:.78rem; font-weight:700; letter-spacing:.3px; text-transform:uppercase;
-  cursor:pointer; transition:transform .15s; text-decoration:none;
-  display:flex; align-items:center; justify-content:center; gap:6px;
-}
+.pa-btn { flex:1; padding:14px; border-radius:14px; border:none; font-size:.78rem; font-weight:700; letter-spacing:.3px; text-transform:uppercase; cursor:pointer; transition:transform .15s; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:6px; }
 .pa-btn:active { transform:scale(.97); }
 .pa-primary { background:var(--accent); color:#fff; }
 .pa-secondary { background:var(--white); color:var(--ink); box-shadow:var(--shadow); }
 
 /* Clima */
-.clima-hero {
-  margin:12px 16px; background:var(--ink); border-radius:var(--r2);
-  padding:28px 24px; text-align:center; position:relative; overflow:hidden;
-}
-.clima-hero::before {
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(ellipse at 50% 0%, rgba(43,108,176,.4) 0%, transparent 60%),
-             radial-gradient(ellipse at 80% 100%, rgba(212,96,26,.3) 0%, transparent 50%);
-}
+.clima-hero { margin:12px 16px; background:var(--ink); border-radius:var(--r2); padding:28px 24px; text-align:center; position:relative; overflow:hidden; }
+.clima-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%,rgba(43,108,176,.4) 0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(212,96,26,.3) 0%,transparent 50%); }
 .ch-rel { position:relative; }
 .ch-temp { font-size:5rem; font-weight:800; color:#fff; letter-spacing:-3px; line-height:1; }
 .ch-desc { font-size:.9rem; color:rgba(255,255,255,.6); margin-top:6px; }
 .ch-range { font-size:.75rem; color:rgba(255,255,255,.4); margin-top:4px; }
 .ch-pill { display:inline-block; margin-top:14px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15); color:var(--accent2); font-size:.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:6px 16px; border-radius:100px; }
-
 .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:0 16px; }
 .info-card { background:var(--white); border-radius:var(--r); box-shadow:var(--shadow); padding:14px; }
 .ic-icon { font-size:1.4rem; margin-bottom:6px; }
 .ic-label { font-size:.62rem; font-weight:600; color:var(--ink3); text-transform:uppercase; letter-spacing:1px; margin-bottom:3px; }
 .ic-val { font-size:.85rem; font-weight:700; color:var(--ink); }
-
 .mbar-list { padding:0 16px; display:flex; flex-direction:column; gap:8px; }
 .mbar { display:flex; align-items:center; gap:10px; }
 .mbar-l { width:28px; font-size:.68rem; color:var(--ink3); font-weight:600; }
@@ -375,24 +248,16 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 .mh-logo span { color:var(--accent2); }
 .mh-sub { font-size:.68rem; color:rgba(255,255,255,.4); letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
 .mh-v { display:inline-block; margin-top:10px; background:rgba(212,96,26,.25); color:var(--accent2); font-size:.62rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 14px; border-radius:100px; }
-
 .menu-list { padding:0 16px; display:flex; flex-direction:column; gap:8px; }
-.menu-item {
-  background:var(--white); border-radius:var(--r); box-shadow:var(--shadow);
-  padding:14px 16px; display:flex; align-items:center; gap:12px; cursor:pointer; transition:transform .15s;
-}
+.menu-item { background:var(--white); border-radius:var(--r); box-shadow:var(--shadow); padding:14px 16px; display:flex; align-items:center; gap:12px; cursor:pointer; transition:transform .15s; }
 .menu-item:active { transform:scale(.98); }
 .mi-ico { width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
 .mi-text { flex:1; }
 .mi-name { font-size:.88rem; font-weight:700; color:var(--ink); }
 .mi-sub { font-size:.7rem; color:var(--ink3); margin-top:1px; }
 .mi-arr { color:var(--ink3); font-size:1rem; }
-
 .link-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:0 16px; }
-.lnk {
-  background:var(--white); border-radius:var(--r); box-shadow:var(--shadow);
-  padding:14px; text-decoration:none; cursor:pointer; transition:transform .15s; display:block;
-}
+.lnk { background:var(--white); border-radius:var(--r); box-shadow:var(--shadow); padding:14px; text-decoration:none; cursor:pointer; transition:transform .15s; display:block; }
 .lnk:active { transform:scale(.96); }
 .lnk-ico { font-size:1.5rem; margin-bottom:6px; }
 .lnk-name { font-size:.78rem; font-weight:700; color:var(--ink); }
@@ -401,53 +266,38 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 /* Food tabs */
 .ftabs { display:flex; gap:8px; padding:0 16px; overflow-x:auto; }
 .ftabs::-webkit-scrollbar { display:none; }
-.ftab {
-  flex-shrink:0; padding:9px 18px; border-radius:100px;
-  background:var(--white); border:1.5px solid var(--border);
-  font-size:.72rem; font-weight:700; color:var(--ink2); cursor:pointer; transition:all .15s;
-}
+.ftab { flex-shrink:0; padding:9px 18px; border-radius:100px; background:var(--white); border:1.5px solid var(--border); font-size:.72rem; font-weight:700; color:var(--ink2); cursor:pointer; transition:all .15s; }
 .ftab.on { background:var(--accent); color:#fff; border-color:var(--accent); }
 .ftab:active { transform:scale(.94); }
 
 /* Contact form */
 .cf { padding:0 16px; display:flex; flex-direction:column; gap:10px; }
 .cf-l { font-size:.65rem; font-weight:700; color:var(--ink3); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:5px; }
-.cf-i {
-  width:100%; background:var(--white); border:1.5px solid var(--border);
-  border-radius:12px; padding:12px 14px; font-size:.85rem; font-family:inherit;
-  color:var(--ink); outline:none; transition:border-color .2s;
-}
+.cf-i { width:100%; background:var(--white); border:1.5px solid var(--border); border-radius:12px; padding:12px 14px; font-size:.85rem; font-family:inherit; color:var(--ink); outline:none; transition:border-color .2s; }
 .cf-i:focus { border-color:var(--accent); }
 .cf-ta { min-height:85px; resize:vertical; }
-.cf-btn {
-  padding:15px; border-radius:14px; border:none;
-  background:var(--accent); color:#fff;
-  font-size:.85rem; font-weight:800; letter-spacing:.5px; font-family:inherit;
-  cursor:pointer; transition:transform .15s;
-}
+.cf-btn { padding:15px; border-radius:14px; border:none; background:var(--accent); color:#fff; font-size:.85rem; font-weight:800; letter-spacing:.5px; font-family:inherit; cursor:pointer; transition:transform .15s; }
 .cf-btn:active { transform:scale(.97); }
 
 /* Toast */
-.toast {
-  position:fixed; top:60px; left:50%; transform:translateX(-50%) translateY(-12px);
-  background:var(--ink); color:#fff; border-radius:100px;
-  padding:10px 20px; font-size:.78rem; font-weight:600;
-  z-index:9000; opacity:0; pointer-events:none; transition:all .3s;
-  white-space:nowrap; box-shadow:0 4px 20px rgba(0,0,0,.25);
-}
+.toast { position:fixed; top:60px; left:50%; transform:translateX(-50%) translateY(-12px); background:var(--ink); color:#fff; border-radius:100px; padding:10px 20px; font-size:.78rem; font-weight:600; z-index:9000; opacity:0; pointer-events:none; transition:all .3s; white-space:nowrap; box-shadow:0 4px 20px rgba(0,0,0,.25); }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
 /* Stat row */
 .stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:0 16px; }
-.stat-c {
-  background:var(--white); border-radius:var(--r); box-shadow:var(--shadow);
-  padding:14px 10px; text-align:center; cursor:pointer; transition:transform .15s;
-}
+.stat-c { background:var(--white); border-radius:var(--r); box-shadow:var(--shadow); padding:14px 10px; text-align:center; cursor:pointer; transition:transform .15s; }
 .stat-c:active { transform:scale(.95); }
 .stat-n { font-size:1.5rem; font-weight:800; color:var(--accent); }
 .stat-l { font-size:.6rem; font-weight:600; color:var(--ink3); text-transform:uppercase; letter-spacing:.5px; margin-top:2px; }
 
-/* Spacer */
+/* Clima live badge */
+.live-badge { display:inline-flex; align-items:center; gap:5px; background:rgba(212,96,26,.15); border:1px solid rgba(212,96,26,.3); color:var(--accent); font-size:.6rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:4px 10px; border-radius:100px; margin-left:8px; }
+.live-dot { width:6px; height:6px; background:var(--accent); border-radius:50%; animation:blink 1.5s infinite; }
+
+/* Map embed */
+.map-container { margin:0 16px; border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow); height:200px; background:var(--bg2); display:flex; align-items:center; justify-content:center; }
+.map-container iframe { width:100%; height:100%; border:none; }
+
 .sp16 { height:16px; }
 .sp8 { height:8px; }
 </style>
@@ -458,7 +308,7 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 <div id="splash">
   <div class="sp-logo">Barranca<span>X</span></div>
   <div class="sp-city">Barrancabermeja · Colombia</div>
-  <div class="sp-bar"></div>
+  <div class="sp-bar"><div class="sp-progress" id="spProg"></div></div>
 </div>
 
 <!-- STATUS BAR -->
@@ -489,7 +339,7 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
       <div class="hb-stat"><div class="hb-num">8+</div><div class="hb-lbl">Sitios</div></div>
       <div class="hb-stat"><div class="hb-num">15</div><div class="hb-lbl">Hoteles</div></div>
       <div class="hb-stat"><div class="hb-num">12</div><div class="hb-lbl">Rest.</div></div>
-      <div class="hb-stat"><div class="hb-num">28°</div><div class="hb-lbl">Clima</div></div>
+      <div class="hb-stat"><div class="hb-num" id="homeTemp">28°</div><div class="hb-lbl">Clima</div></div>
     </div>
   </div>
 
@@ -508,10 +358,10 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
   <div class="wstrip" onclick="go('clima')">
     <div class="ws-info">
       <div class="ws-city">Barrancabermeja, Santander</div>
-      <div class="ws-temp">28°C</div>
-      <div class="ws-desc">☀️ Cálido y húmedo · Mín 22° Máx 34°</div>
+      <div class="ws-temp" id="homeWsTemp">28°C</div>
+      <div class="ws-desc" id="homeWsDesc">☀️ Cálido y húmedo · Mín 22° Máx 34°</div>
     </div>
-    <div class="ws-icon">🌤</div>
+    <div class="ws-icon" id="homeWsIcon">🌤</div>
   </div>
 
   <div class="section-title">Hoteles populares</div>
@@ -577,6 +427,20 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
       <div style="text-align:center"><div style="font-size:1.2rem;font-weight:800;color:var(--accent2)">$40.000</div><div style="font-size:.6rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1px;margin-top:2px">Máximo</div></div>
     </div>
   </div>
+
+  <!-- Botones de apps de taxi -->
+  <div class="section-title">Pedir taxi ahora</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px">
+    <a href="https://indriver.com/city/barrancabermeja/" target="_blank" style="background:#FF5F00;border-radius:var(--r);padding:14px;text-decoration:none;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow)">
+      <span style="font-size:1.4rem">🟠</span>
+      <div><div style="font-size:.82rem;font-weight:800;color:#fff">InDriver</div><div style="font-size:.65rem;color:rgba(255,255,255,.7)">Negocia el precio</div></div>
+    </a>
+    <a href="https://api.whatsapp.com/send?text=Hola,%20necesito%20un%20taxi%20en%20Barrancabermeja" target="_blank" style="background:#25D366;border-radius:var(--r);padding:14px;text-decoration:none;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow)">
+      <span style="font-size:1.4rem">💬</span>
+      <div><div style="font-size:.82rem;font-weight:800;color:#fff">WhatsApp</div><div style="font-size:.65rem;color:rgba(255,255,255,.7)">Taxi local</div></div>
+    </a>
+  </div>
+
   <div class="section-title">Sectores y destinos</div>
   <div class="list" id="secList"></div>
 </div>
@@ -585,15 +449,19 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 <div class="screen" id="sc-mas">
   <div class="more-hero">
     <div class="mh-logo">Barranca<span>X</span>perience</div>
-    <div class="mh-sub">Guía Turística Digital · 2024</div>
-    <div class="mh-v">v2.0 · Barrancabermeja</div>
+    <div class="mh-sub">Guía Turística Digital · 2025</div>
+    <div class="mh-v">v2.1 · Barrancabermeja</div>
   </div>
-
   <div class="section-title">Explorar más</div>
   <div class="menu-list">
     <div class="menu-item" onclick="go('clima')">
       <div class="mi-ico" style="background:rgba(43,108,176,.1)">🌡</div>
-      <div class="mi-text"><div class="mi-name">Clima</div><div class="mi-sub">Temperaturas y mejor época para visitar</div></div>
+      <div class="mi-text"><div class="mi-name">Clima en Vivo</div><div class="mi-sub">Temperatura real y pronóstico</div></div>
+      <div class="mi-arr">›</div>
+    </div>
+    <div class="menu-item" onclick="openPanel('mapa')">
+      <div class="mi-ico" style="background:rgba(39,103,73,.1)">🗺</div>
+      <div class="mi-text"><div class="mi-name">Mapa de la Ciudad</div><div class="mi-sub">Vista en Google Maps</div></div>
       <div class="mi-arr">›</div>
     </div>
     <div class="menu-item" onclick="openPanel('rutas')">
@@ -617,7 +485,6 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
       <div class="mi-arr">›</div>
     </div>
   </div>
-
   <div class="section-title">Links oficiales</div>
   <div class="link-grid">
     <a href="https://www.barrancabermeja.gov.co" target="_blank" class="lnk"><div class="lnk-ico">🏛</div><div class="lnk-name">Alcaldía</div><div class="lnk-url">barrancabermeja.gov.co</div></a>
@@ -625,7 +492,12 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
     <a href="https://www.google.com/maps/place/Barrancabermeja" target="_blank" class="lnk"><div class="lnk-ico">🗺</div><div class="lnk-name">Google Maps</div><div class="lnk-url">Ver en mapa</div></a>
     <a href="https://encolombia.com/turismo/destinos-turisticos/destinos-colombianos/santander/barrancabermeja/" target="_blank" class="lnk"><div class="lnk-ico">🌐</div><div class="lnk-name">EnColombia</div><div class="lnk-url">Guía turística</div></a>
   </div>
-
+  <div class="section-title">Compartir app</div>
+  <div style="padding:0 16px">
+    <button onclick="shareApp()" style="width:100%;padding:14px;border-radius:var(--r);border:none;background:var(--accent);color:#fff;font-size:.85rem;font-weight:800;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--shadow)">
+      📤 Compartir BarrancaXperience
+    </button>
+  </div>
   <div class="section-title">Créditos</div>
   <div style="margin:0 16px 24px;background:var(--white);border-radius:var(--r);box-shadow:var(--shadow);padding:16px;font-size:.78rem;color:var(--ink2);line-height:1.7">
     Proyecto del <strong style="color:var(--ink)">Instituto Técnico Veintiséis de Marzo</strong>, Barrancabermeja.<br><br>
@@ -638,21 +510,24 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 <div class="screen" id="sc-clima">
   <div class="clima-hero">
     <div class="ch-rel">
-      <div style="font-size:2.5rem;margin-bottom:6px">☀️</div>
-      <div class="ch-temp">28°C</div>
-      <div class="ch-desc">Cálido y Húmedo</div>
-      <div class="ch-range">Mín: 22°C · Máx: 34°C</div>
-      <div class="ch-pill">Mejor época: Dic – Feb</div>
+      <div id="climaIcon" style="font-size:2.5rem;margin-bottom:6px">☀️</div>
+      <div class="ch-temp" id="climaTemp">28°C</div>
+      <div class="ch-desc" id="climaDesc">Cálido y Húmedo</div>
+      <div class="ch-range" id="climaRange">Mín: 22°C · Máx: 34°C</div>
+      <div class="ch-pill">
+        <span class="live-badge"><span class="live-dot"></span>EN VIVO</span>
+        Mejor época: Dic – Feb
+      </div>
     </div>
   </div>
   <div class="section-title">Datos clave</div>
   <div class="info-grid">
-    <div class="info-card"><div class="ic-icon">🌡</div><div class="ic-label">Temp. Media</div><div class="ic-val">28°C todo el año</div></div>
-    <div class="info-card"><div class="ic-icon">💧</div><div class="ic-label">Humedad</div><div class="ic-val">Alta — Tropical</div></div>
-    <div class="info-card"><div class="ic-icon">🌧</div><div class="ic-label">Lluvias</div><div class="ic-val">Abr–Jun · Ago–Nov</div></div>
-    <div class="info-card"><div class="ic-icon">👕</div><div class="ic-label">Qué llevar</div><div class="ic-val">Ligera + bloqueador</div></div>
+    <div class="info-card"><div class="ic-icon">🌡</div><div class="ic-label">Temp. Actual</div><div class="ic-val" id="ic-temp">Cargando...</div></div>
+    <div class="info-card"><div class="ic-icon">💧</div><div class="ic-label">Humedad</div><div class="ic-val" id="ic-hum">Cargando...</div></div>
+    <div class="info-card"><div class="ic-icon">🌬</div><div class="ic-label">Viento</div><div class="ic-val" id="ic-wind">Cargando...</div></div>
+    <div class="info-card"><div class="ic-icon">👁</div><div class="ic-label">Visibilidad</div><div class="ic-val" id="ic-vis">Cargando...</div></div>
   </div>
-  <div class="section-title">Temperatura mensual</div>
+  <div class="section-title">Temperatura mensual (histórico)</div>
   <div class="mbar-list" id="mbars"></div>
   <div class="sp16"></div>
 </div>
@@ -683,41 +558,49 @@ body { display:flex; flex-direction:column; position:fixed; inset:0; }
 <div class="toast" id="toast"></div>
 
 <script>
-// ─────────────────────────────────────────────
+// ═══════════════════════════════════════════
 // DATA
-// ─────────────────────────────────────────────
+// ═══════════════════════════════════════════
 const places = [
   { name:"Museo Nacional del Petróleo", emoji:"🛢", tags:["Historia","Cultura"],
     desc:"El único museo dedicado al petróleo en Colombia.",
     full:"El Museo Nacional del Petróleo alberga maquinaria histórica, documentos originales y exhibiciones interactivas que narran cómo el crudo transformó a Barrancabermeja. Visita obligatoria para entender la identidad de la ciudad.",
+    lat:7.0639, lng:-73.8570,
     maps:"https://www.google.com/maps/search/Museo+del+Petroleo+Barrancabermeja" },
   { name:"Muelle de Barrancabermeja", emoji:"⚓", tags:["Historia","Paisaje"],
     desc:"El corazón histórico sobre el río Magdalena.",
     full:"Punto histórico de comercio fluvial, hoy convertido en espacio turístico y gastronómico. Ideal para el bocachico frito sudado y contemplar el atardecer sobre el Magdalena.",
+    lat:7.0647, lng:-73.8607,
     maps:"https://www.google.com/maps/search/Muelle+Barrancabermeja" },
   { name:"Puente Guillermo Gaviria", emoji:"🌉", tags:["Arquitectura","Fotografía","Paisaje"],
     desc:"Ícono de la ingeniería santandereana sobre el Magdalena.",
     full:"Imponente puente atirantado que conecta Barrancabermeja con Yondó. Sus torres reflejadas en el río lo hacen el punto más fotografiado de la ciudad, especialmente al atardecer.",
+    lat:7.0600, lng:-73.8520,
     maps:"https://www.google.com/maps/search/Puente+Guillermo+Gaviria+Correa+Barrancabermeja" },
   { name:"Cristo Petrolero", emoji:"✝️", tags:["Religioso","Paisaje","Símbolo"],
     desc:"Estatua que vigila la ciudad desde las alturas.",
     full:"Se eleva sobre un cerro con vista privilegiada al río y a la refinería Ecopetrol. Combina lo espiritual con la identidad petrolera del territorio. Una de las mejores panorámicas de la ciudad.",
+    lat:7.0750, lng:-73.8490,
     maps:"https://www.google.com/maps/search/Cristo+Petrolero+Barrancabermeja" },
   { name:"Iglesia La Inmaculada", emoji:"⛪", tags:["Religioso","Historia"],
     desc:"Catedral histórica en el corazón de la ciudad.",
     full:"Principal templo católico de Barrancabermeja, construida a principios del siglo XX. Ha sido testigo de los momentos más importantes de la historia local.",
+    lat:7.0650, lng:-73.8550,
     maps:"https://www.google.com/maps/search/Iglesia+Inmaculada+Barrancabermeja" },
   { name:"El Llanito", emoji:"🦜", tags:["Naturaleza","Ecoturismo"],
     desc:"Ciénaga con delfines rosados y pesca artesanal.",
     full:"Corregimiento a 20 km de la ciudad con ciénaga, delfines rosados del Magdalena, garzas y caimanes. La comunidad mantiene viva la pesca artesanal. Tarifa de taxi: $20.000.",
+    lat:7.1450, lng:-73.8200,
     maps:"https://www.google.com/maps/search/El+Llanito+Barrancabermeja" },
   { name:"Iglesia Ntra. Sra. del Carmen", emoji:"🕍", tags:["Religioso"],
     desc:"Patrona de conductores y transportadores.",
     full:"Espacio de devoción popular muy arraigado en la cultura barranqueña. La Virgen del Carmen es especialmente venerada por los conductores de la ciudad.",
+    lat:7.0660, lng:-73.8540,
     maps:"https://www.google.com/maps/search/Iglesia+del+Carmen+Barrancabermeja" },
   { name:"Letrero de Barrancabermeja", emoji:"🔤", tags:["Fotografía","Turismo"],
     desc:"El punto de selfie obligatorio para todo visitante.",
     full:"Las letras multicolores con el nombre de la ciudad son el ícono fotográfico por excelencia. El punto de partida perfecto para cualquier recorrido turístico.",
+    lat:7.0640, lng:-73.8565,
     maps:"https://www.google.com/maps/search/Letrero+Barrancabermeja+turismo" }
 ];
 
@@ -795,7 +678,7 @@ const restaurants = [
     maps:"https://www.google.com/maps/search/La+Isla+de+los+Mangos+Barrancabermeja" },
   { name:"Pig-Good", emoji:"🐖", type:"Cerdo · Asado Colombiano", cat:"carnes",
     addr:"Cra 12 55-45, Pueblo Nuevo", phone:"+57 314 2374809", rating:"⭐ 4.3", price:"$",
-    desc:"Especialistas en cerdo asado. Chicharrón, costilla y morcilla criolle.",
+    desc:"Especialistas en cerdo asado. Chicharrón, costilla y morcilla criolla.",
     maps:"https://www.google.com/maps/search/Pig+Good+Barrancabermeja" },
   { name:"Cazuela del Magdalena", emoji:"🍜", type:"Cazuelas · Pescado", cat:"tipico",
     addr:"Cl. 52 #15-31", rating:"⭐ 4.4", price:"$$",
@@ -853,47 +736,170 @@ const faqs = [
   {q:"¿Hay Uber o inDrive?",a:"InDrive opera en Barrancabermeja como complemento. Los taxis regulados con tarifas fijas por sectores siguen siendo el servicio más confiable."}
 ];
 
-// ─────────────────────────────────────────────
-// NAVIGATION
-// ─────────────────────────────────────────────
-const screens = {
-  home:{ t:"Buenos días 👋", s:"Barrancabermeja · Santander", a:"🔔", nav:"home" },
-  lugares:{ t:"Explorar", s:"Sitios turísticos", a:"🔍", nav:"lugares" },
-  hoteles:{ t:"Hoteles", s:"Alojamiento en la ciudad", a:"🔍", nav:"hoteles" },
-  comida:{ t:"Comer", s:"Gastronomía local", a:"🔍", nav:"comida" },
-  transporte:{ t:"Transporte", s:"Tarifas de taxi", a:"ℹ️", nav:"mas" },
-  mas:{ t:"Más", s:"Explorar opciones", a:"⚙️", nav:"mas" },
-  clima:{ t:"Clima", s:"Temperatura y pronóstico", a:"🌐", nav:"mas" }
-};
+// ═══════════════════════════════════════════
+// SPLASH — LA CORRECCIÓN PRINCIPAL
+// ═══════════════════════════════════════════
+window.addEventListener('load', () => {
+  const prog = document.getElementById('spProg');
+  // Animar barra de progreso
+  setTimeout(() => { prog.style.width = '100%'; }, 100);
+  // Ocultar splash después de 2.3s
+  setTimeout(() => {
+    document.getElementById('splash').classList.add('out');
+  }, 2300);
+  // Inicializar app
+  init();
+});
 
+function init() {
+  updateClock();
+  setInterval(updateClock, 30000);
+  updateGreeting();
+  renderPlaces(places);
+  renderHotels(hotels);
+  renderFood('rest');
+  renderSectors();
+  renderMbars();
+  renderHomeScrolls();
+  fetchWeather();
+}
+
+// ═══════════════════════════════════════════
+// RELOJ
+// ═══════════════════════════════════════════
+function updateClock() {
+  const now = new Date();
+  const h = now.getHours().toString().padStart(2,'0');
+  const m = now.getMinutes().toString().padStart(2,'0');
+  document.getElementById('sTime').textContent = h + ':' + m;
+}
+
+function updateGreeting() {
+  const h = new Date().getHours();
+  let g = h < 12 ? 'Buenos días 👋' : h < 18 ? 'Buenas tardes 👋' : 'Buenas noches 👋';
+  document.getElementById('hTitle').textContent = g;
+}
+
+// ═══════════════════════════════════════════
+// API CLIMA — Open-Meteo (sin key, gratuita)
+// Coordenadas: Barrancabermeja 7.0639, -73.8570
+// ═══════════════════════════════════════════
+async function fetchWeather() {
+  try {
+    const url = 'https://api.open-meteo.com/v1/forecast?latitude=7.0639&longitude=-73.8570&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,visibility&daily=temperature_2m_max,temperature_2m_min&timezone=America%2FBogota&forecast_days=1';
+    const res = await fetch(url);
+    const data = await res.json();
+    const cur = data.current;
+    const daily = data.daily;
+
+    const temp = Math.round(cur.temperature_2m);
+    const hum = cur.relative_humidity_2m;
+    const wind = Math.round(cur.wind_speed_10m);
+    const vis = cur.visibility ? (cur.visibility / 1000).toFixed(1) + ' km' : 'N/D';
+    const wCode = cur.weather_code;
+    const tMax = Math.round(daily.temperature_2m_max[0]);
+    const tMin = Math.round(daily.temperature_2m_min[0]);
+
+    const { icon, desc } = weatherInfo(wCode);
+
+    // Actualizar clima screen
+    document.getElementById('climaIcon').textContent = icon;
+    document.getElementById('climaTemp').textContent = temp + '°C';
+    document.getElementById('climaDesc').textContent = desc;
+    document.getElementById('climaRange').textContent = `Mín: ${tMin}°C · Máx: ${tMax}°C`;
+    document.getElementById('ic-temp').textContent = temp + '°C';
+    document.getElementById('ic-hum').textContent = hum + '% Humedad';
+    document.getElementById('ic-wind').textContent = wind + ' km/h';
+    document.getElementById('ic-vis').textContent = vis;
+
+    // Actualizar home
+    document.getElementById('homeTemp').textContent = temp + '°';
+    document.getElementById('homeWsTemp').textContent = temp + '°C';
+    document.getElementById('homeWsDesc').textContent = icon + ' ' + desc + ' · Mín ' + tMin + '° Máx ' + tMax + '°';
+    document.getElementById('homeWsIcon').textContent = icon;
+  } catch(e) {
+    console.log('Weather fetch failed, using defaults');
+  }
+}
+
+function weatherInfo(code) {
+  if(code === 0) return {icon:'☀️', desc:'Despejado'};
+  if(code <= 3) return {icon:'⛅', desc:'Parcialmente nublado'};
+  if(code <= 49) return {icon:'🌫', desc:'Neblina'};
+  if(code <= 67) return {icon:'🌧', desc:'Lluvia'};
+  if(code <= 77) return {icon:'🌨', desc:'Nieve'};
+  if(code <= 82) return {icon:'🌦', desc:'Chubascos'};
+  if(code <= 99) return {icon:'⛈', desc:'Tormenta eléctrica'};
+  return {icon:'🌤', desc:'Cálido y húmedo'};
+}
+
+// ═══════════════════════════════════════════
+// API SHARE (Web Share API nativa)
+// ═══════════════════════════════════════════
+async function shareApp() {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: 'BarrancaXperience',
+        text: '🏙 Descubre Barrancabermeja con la mejor guía turística digital',
+        url: window.location.href
+      });
+    } catch(e) {}
+  } else {
+    // Fallback: copiar al portapapeles
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      toast('🔗 Link copiado al portapapeles');
+    } catch(e) {
+      toast('📤 Comparte: ' + window.location.href);
+    }
+  }
+}
+
+// ═══════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════
+const screens = {
+  home:{ t:'Buenos días 👋', s:'Barrancabermeja · Santander', a:'🔔', nav:'home' },
+  lugares:{ t:'Explorar', s:'Sitios turísticos', a:'🔍', nav:'lugares' },
+  hoteles:{ t:'Hoteles', s:'Alojamiento en la ciudad', a:'🔍', nav:'hoteles' },
+  comida:{ t:'Comer', s:'Gastronomía local', a:'🔍', nav:'comida' },
+  transporte:{ t:'Transporte', s:'Tarifas de taxi', a:'ℹ️', nav:'mas' },
+  mas:{ t:'Más', s:'Explorar opciones', a:'⚙️', nav:'mas' },
+  clima:{ t:'Clima', s:'Temperatura en vivo', a:'🔄', nav:'mas' }
+};
 let cur = 'home';
 
 function go(id) {
   const cfg = screens[id]; if(!cfg) return;
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('sc-' + id)?.classList.add('active');
-  document.getElementById('hTitle').textContent = cfg.t;
+  document.getElementById('hTitle').textContent = id === 'home' ? (new Date().getHours() < 12 ? 'Buenos días 👋' : new Date().getHours() < 18 ? 'Buenas tardes 👋' : 'Buenas noches 👋') : cfg.t;
   document.getElementById('hSub').textContent = cfg.s;
   document.getElementById('hAct').textContent = cfg.a;
   document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
   document.getElementById('ni-' + cfg.nav)?.classList.add('active');
   document.getElementById('scrollArea').scrollTop = 0;
   cur = id;
+  // Refrescar clima si se abre esa pantalla
+  if(id === 'clima') fetchWeather();
 }
 
 function hdrClick() {
-  if(cur==='lugares') document.getElementById('plSearch').focus();
+  if(cur === 'clima') { fetchWeather(); toast('🔄 Actualizando clima...'); }
+  else if(cur === 'lugares') document.getElementById('plSearch').focus();
   else toast('💡 Barrancabermeja, Santander · Colombia');
 }
 
-// ─────────────────────────────────────────────
+// ═══════════════════════════════════════════
 // RENDERS
-// ─────────────────────────────────────────────
+// ═══════════════════════════════════════════
 let plFilter = 'todos';
 
 function renderPlaces(list) {
-  document.getElementById('plList').innerHTML = list.map((p,i) => `
-    <div class="row-card" onclick="openPlace(${i})">
+  const originalIndices = list.map(p => places.indexOf(p));
+  document.getElementById('plList').innerHTML = list.map((p, i) => `
+    <div class="row-card" onclick="openPlace(${originalIndices[i]})">
       <div class="rc-icon">${p.emoji}</div>
       <div class="rc-body">
         <div class="rc-name">${p.name}</div>
@@ -926,11 +932,29 @@ function openPlace(i) {
   document.getElementById('pSub').textContent = p.tags.join(' · ');
   document.getElementById('pBody').innerHTML = `
     <div class="ps-section"><div class="ps-label">Descripción</div><div class="ps-text">${p.full}</div></div>
-    <div class="ps-section"><div class="ps-label">Categorías</div><div class="ps-tags">${p.tags.map(t=>`<span class="ps-tag">${t}</span>`).join('')}</div></div>`;
+    <div class="ps-section"><div class="ps-label">Categorías</div><div class="ps-tags">${p.tags.map(t=>`<span class="ps-tag">${t}</span>`).join('')}</div></div>
+    <div class="ps-section"><div class="ps-label">Ubicación en mapa</div>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=${encodeURIComponent(p.name + ' Barrancabermeja')}&zoom=15"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </div>`;
   document.getElementById('pAct').innerHTML = `
     <a href="${p.maps}" target="_blank" class="pa-btn pa-secondary">🗺 Ver en Mapa</a>
-    <button class="pa-btn pa-primary" onclick="toast('📌 ${p.name} guardado')">💾 Guardar</button>`;
+    <button class="pa-btn pa-primary" onclick="sharePlace('${p.name}','${p.maps}')">📤 Compartir</button>`;
   document.getElementById('panel').classList.add('open');
+}
+
+async function sharePlace(name, url) {
+  if (navigator.share) {
+    try { await navigator.share({ title: name + ' - BarrancaXperience', url }); }
+    catch(e) {}
+  } else {
+    await navigator.clipboard.writeText(url).catch(()=>{});
+    toast('🔗 Link copiado');
+  }
 }
 
 function renderHotels(list) {
@@ -1068,12 +1092,21 @@ function renderHomeScrolls() {
     </div>`).join('');
 }
 
-// ─────────────────────────────────────────────
+// ═══════════════════════════════════════════
 // PANELS
-// ─────────────────────────────────────────────
+// ═══════════════════════════════════════════
 function openPanel(type) {
   const P = document.getElementById('panel');
   const configs = {
+    mapa:{
+      emoji:'🗺', title:'Mapa de Barrancabermeja', sub:'Vista satelital de la ciudad',
+      body:`
+        <div class="ps-section"><div class="ps-label">Ciudad</div><div class="ps-text">Barrancabermeja, Santander, Colombia. A orillas del río Magdalena.</div></div>
+        <div class="map-container" style="height:280px">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31614.60!2d-73.8570!3d7.0639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e681b8a8f7e7f1f%3A0x1!2sBarrancabermeja!5e0!3m2!1ses!2sco!4v1" allowfullscreen loading="lazy"></iframe>
+        </div>`,
+      act:`<a href="https://www.google.com/maps/place/Barrancabermeja" target="_blank" class="pa-btn pa-secondary">🌐 Abrir en Google Maps</a><button class="pa-btn pa-primary" onclick="closePanel()">← Volver</button>`
+    },
     rutas:{
       emoji:'📍', title:'Rutas Sugeridas', sub:'Itinerarios para tu visita',
       body:`
@@ -1091,12 +1124,12 @@ function openPanel(type) {
           </div>
         </div>
         <div class="ps-section"><div class="ps-label">🌿 Día 2 — Naturaleza</div><div class="ps-text">Excursión a <strong>El Llanito</strong>: ciénaga, delfines rosados, aves exóticas y pesca artesanal. Almuerzo con viuda de pescado en la comunidad. Taxi: $20.000.</div></div>`,
-      act:`<a href="https://www.google.com/maps/place/Barrancabermeja" target="_blank" class="pa-btn pa-secondary">🗺 Abrir Mapa</a><button class="pa-btn pa-primary" onclick="toast('📍 Ruta guardada')">💾 Guardar</button>`
+      act:`<a href="https://www.google.com/maps/place/Barrancabermeja" target="_blank" class="pa-btn pa-secondary">🗺 Abrir Mapa</a><button class="pa-btn pa-primary" onclick="toast('📍 Ruta guardada');closePanel()">💾 Guardar</button>`
     },
     economia:{
       emoji:'🛢', title:'Economía', sub:'La Ciudad del Petróleo',
       body:`
-        <div class="ps-section"><div class="ps-label">Ecopetrol S.A.</div><div class="ps-text">En Barrancabermeja está la refinería de petróleo más grande de Colombia, perteneciente a Ecopetrol S.A. Es reconocida entre las más grandes y antiguas de Latinoamérica.</div></div>
+        <div class="ps-section"><div class="ps-label">Ecopetrol S.A.</div><div class="ps-text">En Barrancabermeja está la refinería de petróleo más grande de Colombia. Es reconocida entre las más grandes y antiguas de Latinoamérica.</div></div>
         <div class="ps-section"><div class="ps-label">Cifras clave</div>
           <div style="display:flex;flex-direction:column;gap:8px">
             ${[['252.000','Barriles refinados por día'],['85%','Productos refinados nacionales'],['90%','Petroquímicos del país'],['206 ha','Área del complejo industrial'],['50+','Plantas de procesamiento']].map(([v,l])=>`
@@ -1130,7 +1163,7 @@ function openPanel(type) {
           <div><div class="cf-l">Tu nombre</div><input class="cf-i" id="cn" placeholder="Nombre completo"></div>
           <div><div class="cf-l">Correo</div><input class="cf-i" id="ce" type="email" placeholder="correo@ejemplo.com"></div>
           <div><div class="cf-l">Tipo de consulta</div>
-            <select class="cf-i" id="ct" style="appearance:none">
+            <select class="cf-i" id="ct">
               <option value="">Selecciona...</option>
               <option>Información Turística</option>
               <option>Rutas y Transporte</option>
@@ -1141,5 +1174,76 @@ function openPanel(type) {
           </div>
           <div><div class="cf-l">Mensaje</div><textarea class="cf-i cf-ta" id="cm" placeholder="¿En qué te podemos ayudar?"></textarea></div>
         </div>
-        <div style="height:12px"></div>
-        <div style="padding:0 16px;display:flex;
+        <div style="height:12px"></div>`,
+      act:`<button class="pa-btn pa-secondary" onclick="closePanel()">Cancelar</button><button class="pa-btn pa-primary" onclick="sendContact()">✉️ Enviar</button>`
+    }
+  };
+
+  const cfg = configs[type]; if(!cfg) return;
+  document.getElementById('pEmoji').textContent = cfg.emoji;
+  document.getElementById('pTitle').textContent = cfg.title;
+  document.getElementById('pSub').textContent = cfg.sub;
+  document.getElementById('pBody').innerHTML = cfg.body;
+  document.getElementById('pAct').innerHTML = cfg.act;
+  P.classList.add('open');
+}
+
+function closePanel() { document.getElementById('panel').classList.remove('open'); }
+
+function tFAQ(i) {
+  const ans = document.getElementById('fa'+i);
+  const ico = document.getElementById('fi'+i);
+  const isOpen = ans.style.maxHeight && ans.style.maxHeight !== '0px';
+  ans.style.maxHeight = isOpen ? '0px' : '400px';
+  ico.textContent = isOpen ? '+' : '−';
+}
+
+function sendContact() {
+  const name = document.getElementById('cn')?.value;
+  const email = document.getElementById('ce')?.value;
+  const msg = document.getElementById('cm')?.value;
+  if(!name || !email || !msg) { toast('⚠️ Por favor completa todos los campos'); return; }
+  // Abrir mailto como fallback confiable
+  const subject = encodeURIComponent('Consulta BarrancaXperience');
+  const body = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\n\n${msg}`);
+  window.location.href = `mailto:info@barrancaxperience.co?subject=${subject}&body=${body}`;
+  toast('✅ Redirigiendo a tu correo...');
+  setTimeout(closePanel, 1500);
+}
+
+// ═══════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════
+let toastTimer;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ═══════════════════════════════════════════
+// PWA — Service Worker inline
+// ═══════════════════════════════════════════
+if('serviceWorker' in navigator) {
+  // Registro inline via blob para funcionar sin servidor extra
+  const swCode = `
+    const CACHE = 'bxp-v1';
+    self.addEventListener('install', e => {
+      e.waitUntil(caches.open(CACHE).then(c => c.addAll(['/'])));
+      self.skipWaiting();
+    });
+    self.addEventListener('fetch', e => {
+      e.respondWith(
+        fetch(e.request).catch(() => caches.match(e.request))
+      );
+    });
+  `;
+  const blob = new Blob([swCode], {type:'application/javascript'});
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).catch(()=>{});
+}
+</script>
+</body>
+</html>
