@@ -8,7 +8,6 @@
 <meta name="theme-color" content="#1A1208">
 <title>BarrancaXperience</title>
 <style>
-/* ── FUENTES LOCALES (sin depender de Google Fonts) ── */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -28,12 +27,8 @@
 html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:var(--font);color:var(--ink)}
 body{display:flex;flex-direction:column;position:fixed;inset:0}
 
-/* ══ SPLASH ══ */
-#splash{
-  position:fixed;inset:0;z-index:9999;background:#1A1208;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
-  transition:opacity .5s ease;
-}
+/* SPLASH */
+#splash{position:fixed;inset:0;z-index:9999;background:#1A1208;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .5s ease}
 #splash.out{opacity:0;pointer-events:none}
 .sp-logo{font-size:2rem;font-weight:800;color:#fff;letter-spacing:-.5px}
 .sp-logo span{color:#F0A050}
@@ -41,28 +36,28 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 .sp-bar{width:64px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:12px;overflow:hidden}
 .sp-fill{height:100%;width:0;background:#F0A050;border-radius:2px;transition:width 1.8s cubic-bezier(.4,0,.2,1)}
 
-/* ══ STATUS ══ */
+/* STATUS */
 .status{height:44px;flex-shrink:0;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:var(--bg)}
 .s-time{font-size:.78rem;font-weight:700}
 .s-icons{font-size:.7rem;display:flex;gap:4px;align-items:center}
 
-/* ══ HEADER ══ */
+/* HEADER */
 .header{flex-shrink:0;padding:4px 20px 14px;background:var(--bg);display:flex;align-items:center;justify-content:space-between}
 .h-title{font-size:1.45rem;font-weight:800;letter-spacing:-.5px}
 .h-sub{font-size:.7rem;font-weight:500;color:var(--ink3);margin-top:1px}
 .h-btn{width:40px;height:40px;border-radius:50%;background:var(--w);border:none;box-shadow:var(--sh);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:transform .15s}
 .h-btn:active{transform:scale(.9)}
 
-/* ══ SCROLL ══ */
+/* SCROLL */
 .scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
 .scroll::-webkit-scrollbar{display:none}
 
-/* ══ SCREENS ══ */
+/* SCREENS */
 .screen{display:none;padding-bottom:28px}
 .screen.active{display:block;animation:fadeUp .25s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-/* ══ BOTTOM NAV ══ */
+/* BOTTOM NAV */
 .bnav{flex-shrink:0;height:70px;background:var(--w);border-top:1px solid var(--bdr);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom,0)}
 .ni{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:none;background:none;transition:transform .15s}
 .ni:active{transform:scale(.88)}
@@ -71,7 +66,7 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 .ni.active .ni-icon{transform:translateY(-2px)}
 .ni.active .ni-label{color:var(--a);font-weight:800}
 
-/* ══ HOME BANNER ══ */
+/* HOME BANNER */
 .hbanner{margin:10px 14px;background:var(--ink);border-radius:var(--r2);overflow:hidden;padding:26px 22px;position:relative}
 .hbanner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 85% 15%,rgba(212,96,26,.5) 0%,transparent 55%),radial-gradient(ellipse at 15% 85%,rgba(43,108,176,.3) 0%,transparent 50%)}
 .hb-rel{position:relative}
@@ -87,7 +82,7 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 .hb-num{font-size:1.35rem;font-weight:800;color:#F0A050}
 .hb-lbl{font-size:.58rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1px;margin-top:1px}
 
-/* ══ SECCIÓN ══ */
+/* SECCIÓN */
 .stitle{font-size:.65rem;font-weight:800;color:var(--ink3);letter-spacing:2px;text-transform:uppercase;padding:18px 14px 8px}
 
 /* Quick pills */
@@ -103,10 +98,12 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 .hscroll{display:flex;gap:10px;padding:0 14px 4px;overflow-x:auto}
 .hscroll::-webkit-scrollbar{display:none}
 
-/* Mini card */
-.pmc{flex-shrink:0;width:136px;background:var(--w);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;cursor:pointer;transition:transform .15s}
+/* Mini card CON IMAGEN */
+.pmc{flex-shrink:0;width:140px;background:var(--w);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;cursor:pointer;transition:transform .15s}
 .pmc:active{transform:scale(.95)}
-.pmc-img{height:86px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;background:var(--bg)}
+.pmc-img{height:90px;overflow:hidden;position:relative;background:var(--bg)}
+.pmc-img img{width:100%;height:100%;object-fit:cover;display:block}
+.pmc-img-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.6rem}
 .pmc-body{padding:9px}
 .pmc-name{font-size:.75rem;font-weight:700;line-height:1.2;margin-bottom:2px}
 .pmc-tag{font-size:.6rem;font-weight:600;color:var(--a)}
@@ -127,7 +124,7 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 .sc-n{font-size:1.4rem;font-weight:800;color:var(--a)}
 .sc-l{font-size:.58rem;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
 
-/* ══ SHARED ══ */
+/* SHARED */
 .searchbox{margin:10px 14px;background:var(--w);border:1.5px solid transparent;border-radius:var(--r);padding:12px 14px;display:flex;align-items:center;gap:9px;box-shadow:var(--sh);transition:border-color .2s}
 .searchbox:focus-within{border-color:var(--a)}
 .searchbox input{flex:1;border:none;background:none;outline:none;font-size:.88rem;font-family:var(--font);color:var(--ink)}
@@ -139,20 +136,30 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 .chip:active{transform:scale(.93)}
 .list{padding:10px 14px;display:flex;flex-direction:column;gap:9px}
 
-/* Row card */
-.rcard{background:var(--w);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;display:flex;cursor:pointer;transition:transform .15s}
+/* Row card CON IMAGEN */
+.rcard{background:var(--w);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;cursor:pointer;transition:transform .15s;display:block}
 .rcard:active{transform:scale(.98)}
-.rc-ico{width:68px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.9rem;background:var(--bg)}
-.rc-body{flex:1;padding:12px 12px}
-.rc-name{font-size:.85rem;font-weight:700;margin-bottom:3px}
+.rcard-img{width:100%;height:140px;overflow:hidden;position:relative;background:var(--bg)}
+.rcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.rcard:active .rcard-img img{transform:scale(1.04)}
+.rcard-img-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.rcard-body{padding:12px}
+.rcard-top{display:flex;align-items:flex-start;gap:8px}
+.rcard-emoji{font-size:1.4rem;flex-shrink:0;margin-top:1px}
+.rc-body{flex:1}
+.rc-name{font-size:.88rem;font-weight:700;margin-bottom:3px}
 .rc-desc{font-size:.7rem;color:var(--ink2);line-height:1.4;margin-bottom:5px}
 .rc-tags{display:flex;gap:4px;flex-wrap:wrap}
 .rtag{font-size:.58rem;font-weight:700;color:var(--a);background:rgba(212,96,26,.08);padding:2px 7px;border-radius:100px}
-.rc-arr{align-self:center;padding-right:12px;color:var(--ink3)}
+.rc-arr{align-self:center;color:var(--ink3);font-size:.85rem}
 
-/* Hotel card */
+/* Hotel card CON IMAGEN */
 .hcard{background:var(--w);border-radius:var(--r2);box-shadow:var(--sh);overflow:hidden;cursor:pointer;transition:transform .15s}
 .hcard:active{transform:scale(.98)}
+.hcard-img{width:100%;height:160px;overflow:hidden;position:relative;background:var(--bg2)}
+.hcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.hcard:active .hcard-img img{transform:scale(1.03)}
+.hcard-img-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem}
 .hc-top{padding:14px;display:flex;gap:11px;align-items:flex-start}
 .hc-ico{width:48px;height:48px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
 .hc-info{flex:1}
@@ -175,9 +182,14 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 .hbtn-m{background:rgba(43,108,176,.1);color:var(--blue)}
 .hbtn-b{background:var(--a);color:#fff}
 
-/* Restaurant card */
-.recard{background:var(--w);border-radius:var(--r2);box-shadow:var(--sh);padding:14px;cursor:pointer;transition:transform .15s}
+/* Restaurant card CON IMAGEN */
+.recard{background:var(--w);border-radius:var(--r2);box-shadow:var(--sh);overflow:hidden;cursor:pointer;transition:transform .15s}
 .recard:active{transform:scale(.98)}
+.recard-img{width:100%;height:150px;overflow:hidden;position:relative;background:var(--bg2)}
+.recard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.recard:active .recard-img img{transform:scale(1.03)}
+.recard-img-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.recard-body{padding:14px}
 .re-top{display:flex;gap:11px;align-items:flex-start;margin-bottom:7px}
 .re-ico{font-size:1.9rem;flex-shrink:0}
 .re-info{flex:1}
@@ -214,7 +226,7 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 .ftab{flex-shrink:0;padding:8px 16px;border-radius:100px;background:var(--w);border:1.5px solid var(--bdr);font-size:.7rem;font-weight:700;color:var(--ink2);cursor:pointer;transition:all .15s}
 .ftab.on{background:var(--a);color:#fff;border-color:var(--a)}
 
-/* ══ PANEL ══ */
+/* PANEL */
 .panel{position:fixed;inset:0;z-index:500;background:var(--bg);transform:translateX(100%);transition:transform .32s cubic-bezier(.32,.72,0,1);display:flex;flex-direction:column}
 .panel.open{transform:translateX(0)}
 .panel-head{padding:50px 18px 18px;display:flex;align-items:flex-end;gap:12px;flex-shrink:0}
@@ -226,6 +238,12 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 .panel-sub{font-size:.7rem;color:var(--ink3);margin-top:2px}
 .panel-scroll{flex:1;overflow-y:auto;padding:18px}
 .panel-scroll::-webkit-scrollbar{display:none}
+
+/* Panel imagen hero */
+.panel-img-hero{width:100%;height:200px;border-radius:var(--r2);overflow:hidden;margin-bottom:18px;background:var(--bg2)}
+.panel-img-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.panel-img-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:var(--bg2)}
+
 .ps-sec{margin-bottom:18px}
 .ps-lbl{font-size:.62rem;font-weight:800;color:var(--ink3);letter-spacing:2px;text-transform:uppercase;margin-bottom:7px}
 .ps-txt{font-size:.82rem;color:var(--ink2);line-height:1.7}
@@ -237,7 +255,7 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 .pa-pri{background:var(--a);color:#fff}
 .pa-sec{background:var(--w);color:var(--ink);box-shadow:var(--sh)}
 
-/* Mapa link card (reemplaza iframe bloqueado) */
+/* Mapa link card */
 .map-card{background:var(--ink);border-radius:var(--r);overflow:hidden;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px;text-decoration:none;transition:transform .15s}
 .map-card:active{transform:scale(.97)}
 .map-card-ico{font-size:2.5rem;flex-shrink:0}
@@ -318,8 +336,20 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 .app-btn-name{font-size:.8rem;font-weight:800}
 .app-btn-sub{font-size:.63rem;opacity:.75}
 
-/* Utilities */
+/* Platos card */
+.plato-card{background:var(--w);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.plato-img{width:100%;height:130px;overflow:hidden;position:relative;background:var(--bg2)}
+.plato-img img{width:100%;height:100%;object-fit:cover;display:block}
+.plato-img-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.plato-body{padding:12px;display:flex;gap:10px;align-items:flex-start}
+.plato-ico{font-size:1.6rem;flex-shrink:0}
+
+/* Utilidades */
 .sp16{height:16px}.sp8{height:8px}.sp4{height:4px}
+
+/* Imagen lazy loading */
+img.lazy{opacity:0;transition:opacity .4s ease}
+img.lazy.loaded{opacity:1}
 </style>
 </head>
 <body>
@@ -471,7 +501,7 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
   <div class="more-hero">
     <div class="mh-logo">Barranca<span>X</span>perience</div>
     <div class="mh-sub">Guía Turística Digital · 2025</div>
-    <div class="mh-v">v2.1 · Barrancabermeja</div>
+    <div class="mh-v">v2.2 · Barrancabermeja</div>
   </div>
   <div class="stitle">Explorar</div>
   <div class="menu-list">
@@ -515,14 +545,14 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
   <div class="lgrid">
     <a href="https://www.barrancabermeja.gov.co" target="_blank" class="lnk"><div class="lnk-ico">🏛</div><div class="lnk-name">Alcaldía</div><div class="lnk-url">gov.co</div></a>
     <a href="https://www.ecopetrol.com.co" target="_blank" class="lnk"><div class="lnk-ico">🛢</div><div class="lnk-name">Ecopetrol</div><div class="lnk-url">ecopetrol.com.co</div></a>
-    <a href="https://goo.gl/maps/barrancabermeja" target="_blank" class="lnk"><div class="lnk-ico">🗺</div><div class="lnk-name">Google Maps</div><div class="lnk-url">Ver ciudad</div></a>
-    <a href="https://encolombia.com/turismo/destinos-turisticos/destinos-colombianos/santander/barrancabermeja/" target="_blank" class="lnk"><div class="lnk-ico">🌐</div><div class="lnk-name">EnColombia</div><div class="lnk-url">Guía</div></a>
+    <a href="https://www.google.com/maps/place/Barrancabermeja" target="_blank" class="lnk"><div class="lnk-ico">🗺</div><div class="lnk-name">Google Maps</div><div class="lnk-url">Ver ciudad</div></a>
+    <a href="https://turismo.encolombia.com/barrancabermeja/" target="_blank" class="lnk"><div class="lnk-ico">🌐</div><div class="lnk-name">EnColombia</div><div class="lnk-url">Guía</div></a>
   </div>
   <div class="stitle">Créditos</div>
-  <div style="margin:0 14px 24px;background:var(--w);border-radius:var(--r);box-shadow:var(--sh);padding:14px;font-size:.76rem;color:var(--ink2);line-height:1.8">
+  <div style="margin:0 14px 24px;background:var(--w);border-radius:var(--r);box-shadow:var(--sh);padding:16px;font-size:.76rem;color:var(--ink2);line-height:1.9">
     Proyecto del <strong style="color:var(--ink)">Instituto Técnico Veintiséis de Marzo</strong><br><br>
-    <strong style="color:var(--a)">Sharick Galbán del Real</strong> · <a href="tel:+573144858700" style="color:var(--blue)">314 485 8700</a><br>
-    <strong style="color:var(--a)">Daniel Libardo Torres Calderón</strong> · <a href="tel:+573009741612" style="color:var(--blue)">300 974 1612</a>
+    <span style="font-size:.65rem;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;font-weight:700">Creador y Desarrollador</span><br>
+    <strong style="color:var(--a);font-size:.85rem">Angello José Aguilar Castro</strong>
   </div>
 </div>
 
@@ -585,131 +615,176 @@ body{display:flex;flex-direction:column;position:fixed;inset:0}
 <div class="toast" id="toast"></div>
 
 <script>
-// ════════════════════════════════════════
+// ══════════════════════════════════════
+// IMÁGENES — Unsplash (libres de uso)
+// Cada lugar, hotel y restaurante tiene su img
+// ══════════════════════════════════════
+const IMG = {
+  // LUGARES
+  museo:     'https://images.unsplash.com/photo-1513185041617-8ab03f83d6c5?w=500&q=70',
+  muelle:    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=70',
+  puente:    'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=500&q=70',
+  cristo:    'https://images.unsplash.com/photo-1548625149-fc4a29cf7092?w=500&q=70',
+  iglesia:   'https://images.unsplash.com/photo-1555085335-8aa7f29b5807?w=500&q=70',
+  llanito:   'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=500&q=70',
+  carmen:    'https://images.unsplash.com/photo-1545987796-200677ee1011?w=500&q=70',
+  letrero:   'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=500&q=70',
+
+  // HOTELES
+  ghl:       'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500&q=70',
+  millenium: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=500&q=70',
+  estrellas: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=500&q=70',
+  vizcaya:   'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=500&q=70',
+  elite:     'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500&q=70',
+  sangabriel:'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=500&q=70',
+  olgalucia: 'https://images.unsplash.com/photo-1568084680786-a84f91d1153c?w=500&q=70',
+  rm:        'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&q=70',
+  delicias:  'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=500&q=70',
+
+  // RESTAURANTES
+  bufalo:    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=70',
+  lacorte:   'https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=70',
+  muelle_r:  'https://images.unsplash.com/photo-1611598558912-bde1793c3aff?w=500&q=70',
+  isla:      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=70',
+  piggood:   'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=500&q=70',
+  cazuela:   'https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=70',
+  nautico:   'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=500&q=70',
+  ghl_r:     'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=500&q=70',
+
+  // PLATOS
+  bagre:     'https://images.unsplash.com/photo-1535399831218-d5bd36d1a6b3?w=500&q=70',
+  bocachico: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=500&q=70',
+  viuda:     'https://images.unsplash.com/photo-1547592180-85f173990554?w=500&q=70',
+  sancocho:  'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&q=70',
+  patacon:   'https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=500&q=70',
+  arrozlisa: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&q=70',
+};
+
+// ══════════════════════════════════════
 // DATA
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 const places = [
-  {name:"Museo Nacional del Petróleo",emoji:"🛢",tags:["Historia","Cultura"],
+  {name:"Museo Nacional del Petróleo",emoji:"🛢",tags:["Historia","Cultura"],img:IMG.museo,
    desc:"El único museo dedicado al petróleo en Colombia.",
-   full:"Alberga maquinaria histórica, documentos originales y exhibiciones interactivas sobre cómo el crudo transformó a Barrancabermeja. Visita obligatoria para entender la identidad de la ciudad.",
+   full:"Alberga maquinaria histórica, documentos originales y exhibiciones interactivas sobre cómo el crudo transformó a Barrancabermeja. Fundado en 1961, es visita obligatoria para entender la identidad petrolera de la ciudad.",
    maps:"https://www.google.com/maps/search/Museo+del+Petroleo+Barrancabermeja"},
-  {name:"Muelle de Barrancabermeja",emoji:"⚓",tags:["Historia","Paisaje"],
+  {name:"Muelle de Barrancabermeja",emoji:"⚓",tags:["Historia","Paisaje"],img:IMG.muelle,
    desc:"El corazón histórico sobre el río Magdalena.",
-   full:"Punto histórico de comercio fluvial, hoy convertido en espacio turístico y gastronómico. Ideal para el bocachico frito sudado y contemplar el atardecer sobre el Magdalena.",
+   full:"Punto histórico de comercio fluvial, hoy convertido en espacio turístico y gastronómico. Ideal para el bocachico frito sudado y contemplar el atardecer sobre las aguas del Magdalena.",
    maps:"https://www.google.com/maps/search/Muelle+Barrancabermeja"},
-  {name:"Puente Guillermo Gaviria",emoji:"🌉",tags:["Arquitectura","Fotografía","Paisaje"],
+  {name:"Puente Guillermo Gaviria",emoji:"🌉",tags:["Arquitectura","Fotografía","Paisaje"],img:IMG.puente,
    desc:"Ícono de la ingeniería santandereana sobre el Magdalena.",
    full:"Imponente puente atirantado que conecta Barrancabermeja con Yondó. Sus torres reflejadas en el río lo hacen el punto más fotografiado de la ciudad, especialmente al atardecer.",
    maps:"https://www.google.com/maps/search/Puente+Guillermo+Gaviria+Barrancabermeja"},
-  {name:"Cristo Petrolero",emoji:"✝️",tags:["Religioso","Paisaje","Símbolo"],
+  {name:"Cristo Petrolero",emoji:"✝️",tags:["Religioso","Paisaje","Símbolo"],img:IMG.cristo,
    desc:"Estatua que vigila la ciudad desde las alturas.",
-   full:"Se eleva sobre un cerro con vista privilegiada al río y a la refinería Ecopetrol. Una de las mejores panorámicas de la ciudad.",
+   full:"Se eleva sobre un cerro con vista privilegiada al río y a la refinería Ecopetrol. Una de las mejores panorámicas de la ciudad. Junto a él hay una escultura de una mano sosteniendo el planeta.",
    maps:"https://www.google.com/maps/search/Cristo+Petrolero+Barrancabermeja"},
-  {name:"Iglesia La Inmaculada",emoji:"⛪",tags:["Religioso","Historia"],
+  {name:"Iglesia La Inmaculada",emoji:"⛪",tags:["Religioso","Historia"],img:IMG.iglesia,
    desc:"Catedral histórica en el corazón de la ciudad.",
-   full:"Principal templo católico de Barrancabermeja, construida a principios del siglo XX. Testigo de los momentos más importantes de la historia local.",
+   full:"Principal templo católico de Barrancabermeja, construida a principios del siglo XX. Testigo de los momentos más importantes de la historia local. Arquitectura colonial muy bien conservada.",
    maps:"https://www.google.com/maps/search/Iglesia+Inmaculada+Barrancabermeja"},
-  {name:"El Llanito",emoji:"🦜",tags:["Naturaleza","Ecoturismo"],
+  {name:"El Llanito",emoji:"🦜",tags:["Naturaleza","Ecoturismo"],img:IMG.llanito,
    desc:"Ciénaga con delfines rosados y pesca artesanal.",
-   full:"Corregimiento a 20 km con ciénaga, delfines rosados del Magdalena, garzas y caimanes. La comunidad mantiene viva la pesca artesanal. Taxi: $20.000.",
+   full:"Corregimiento a 20 km con ciénaga, delfines rosados del Magdalena, garzas y caimanes. La comunidad mantiene viva la pesca artesanal. También hay manatí antillano, especie en vía de extinción. Taxi: $20.000.",
    maps:"https://www.google.com/maps/search/El+Llanito+Barrancabermeja"},
-  {name:"Iglesia Ntra. Sra. del Carmen",emoji:"🕍",tags:["Religioso"],
+  {name:"Iglesia Ntra. Sra. del Carmen",emoji:"🕍",tags:["Religioso"],img:IMG.carmen,
    desc:"Patrona de conductores y transportadores.",
-   full:"Espacio de devoción popular muy arraigado en la cultura barranqueña. La Virgen del Carmen es especialmente venerada por los conductores.",
+   full:"Espacio de devoción popular muy arraigado en la cultura barranqueña. La Virgen del Carmen es especialmente venerada por los conductores y transportadores de la ciudad.",
    maps:"https://www.google.com/maps/search/Iglesia+del+Carmen+Barrancabermeja"},
-  {name:"Letrero de Barrancabermeja",emoji:"🔤",tags:["Fotografía","Turismo"],
+  {name:"Letrero de Barrancabermeja",emoji:"🔤",tags:["Fotografía","Turismo"],img:IMG.letrero,
    desc:"El punto de selfie obligatorio para todo visitante.",
-   full:"Las letras multicolores con el nombre de la ciudad son el ícono fotográfico por excelencia. El punto de partida perfecto para cualquier recorrido.",
+   full:"Las letras multicolores con el nombre de la ciudad son el ícono fotográfico por excelencia, con figuras alusivas a la flora, fauna e industria local. El punto de partida perfecto para cualquier recorrido.",
    maps:"https://www.google.com/maps/search/Letrero+Barrancabermeja"}
 ];
 
 const hotels = [
-  {name:"GHL Style Barrancabermeja",stars:"★★★★",cat:"lujo",
+  {name:"GHL Style Barrancabermeja",stars:"★★★★",cat:"lujo",img:IMG.ghl,
    addr:"Cra 8A N°51-08, Sector Comercial",phone:"+57 607 6972533",
    amenities:["WiFi","Restaurante","Bar","Terraza","Jacuzzi","Gym"],
-   desc:"#1 en TripAdvisor. 96 habitaciones. Vista a la refinería y al río.",price:"desde $180.000",
+   desc:"#1 en TripAdvisor. 96 habitaciones con vista a la refinería y al río. Buffet premium con opciones veganas.",price:"desde $180.000",
    tags:["piscina"],booking:"https://www.booking.com/hotel/co/ghl-style-barrancabermeja.html",
    maps:"https://www.google.com/maps/search/GHL+Style+Barrancabermeja"},
-  {name:"Hotel Millenium",stars:"★★★★",cat:"lujo",
+  {name:"Hotel Millenium",stars:"★★★★",cat:"lujo",img:IMG.millenium,
    addr:"Calle 71 No 18-09, Frente Refinería",
    amenities:["WiFi","Restaurante","Spa","Turkish Bath","Gym","Shuttle Aeropuerto"],
-   desc:"Frente a Ecopetrol. Spa, turkish bath y desayuno buffet incluido.",price:"desde $150.000",
+   desc:"Frente a Ecopetrol. Spa completo, turkish bath y desayuno buffet incluido.",price:"desde $150.000",
    tags:[],booking:"https://www.booking.com/city/co/barrancabermeja.html",
    maps:"https://www.google.com/maps/search/Hotel+Millenium+Barrancabermeja"},
-  {name:"Hotel Súper Estrellas",stars:"★★★★",cat:"lujo",
+  {name:"Hotel Súper Estrellas",stars:"★★★★",cat:"lujo",img:IMG.estrellas,
    addr:"Carrera 8 No. 6-19",
    amenities:["WiFi","Terraza","Restaurante","Gym","Spa"],
-   desc:"4 estrellas con terraza panorámica y todas las comodidades.",price:"desde $160.000",
+   desc:"4 estrellas con terraza panorámica y todas las comodidades. Excelente servicio.",price:"desde $160.000",
    tags:[],booking:"https://www.booking.com/city/co/barrancabermeja.html",
    maps:"https://www.google.com/maps/search/Hotel+Super+Estrellas+Barrancabermeja"},
-  {name:"Hotel Vizcaya Plaza",stars:"★★★",cat:"estandar",
+  {name:"Hotel Vizcaya Plaza",stars:"★★★",cat:"estandar",img:IMG.vizcaya,
    addr:"Calle 52 #15-101, Uribe Uribe",
    amenities:["WiFi","Restaurante","Sauna","Jacuzzi","Gym"],
-   desc:"Cerca del Parque Uribe Uribe. Sauna y jacuzzi.",price:"desde $110.000",
+   desc:"Cerca del Parque Uribe Uribe. Sauna y jacuzzi disponibles para huéspedes.",price:"desde $110.000",
    tags:[],booking:"https://www.booking.com/city/co/barrancabermeja.html",
    maps:"https://www.google.com/maps/search/Hotel+Vizcaya+Plaza+Barrancabermeja"},
-  {name:"Hotel Elite",stars:"★★★",cat:"estandar",
+  {name:"Hotel Elite",stars:"★★★",cat:"estandar",img:IMG.elite,
    addr:"Calle 49 No. 9-78",
    amenities:["WiFi","Piscina","Restaurante","Gym 24h","Desayuno incl."],
-   desc:"A 10 min del río. Piscina y gimnasio 24h.",price:"desde $120.000",
+   desc:"A 10 min del río. Piscina exterior y gimnasio 24 horas. Desayuno incluido.",price:"desde $120.000",
    tags:["piscina"],booking:"https://www.booking.com/city/co/barrancabermeja.html",
    maps:"https://www.google.com/maps/search/Hotel+Elite+Barrancabermeja"},
-  {name:"Hotel San Gabriel",stars:"★★★",cat:"estandar",
+  {name:"Hotel San Gabriel",stars:"★★★",cat:"estandar",img:IMG.sangabriel,
    addr:"Calle 49# 9-38 Piso 2",
    amenities:["WiFi","Restaurante","Mascotas OK"],
-   desc:"Calificación 9.1 en Booking. Excelente relación calidad-precio.",price:"desde $90.000",
+   desc:"Calificación 9.1 en Booking. Excelente relación calidad-precio. Admite mascotas.",price:"desde $90.000",
    tags:[],booking:"https://www.booking.com/city/co/barrancabermeja.html",
    maps:"https://www.google.com/maps/search/Hotel+San+Gabriel+Barrancabermeja"},
-  {name:"Hotel Olga Lucía",stars:"★★★",cat:"estandar",
+  {name:"Hotel Olga Lucía",stars:"★★★",cat:"estandar",img:IMG.olgalucia,
    addr:"Km 5.5 Autopista a Bucaramanga",
    amenities:["WiFi","Piscina","Jardín","Restaurante","Parqueadero Gratis"],
-   desc:"A 5 min del aeropuerto Yariguíes. Piscina exterior y jardín.",price:"desde $95.000",
+   desc:"A 5 min del aeropuerto Yariguíes. Piscina exterior y jardín. Parqueadero gratuito.",price:"desde $95.000",
    tags:["piscina"],booking:"https://www.booking.com/city/co/barrancabermeja.html",
    maps:"https://www.google.com/maps/search/Hotel+Olga+Lucia+Barrancabermeja"},
-  {name:"Hotel RM",stars:"★★",cat:"economico",
+  {name:"Hotel RM",stars:"★★",cat:"economico",img:IMG.rm,
    addr:"Cra 34 39-41, Las Brisas",phone:"+57 7 6027380",
    amenities:["Aire Acond.","TV","Baño Privado"],
-   desc:"Opción económica y limpia. Ideal para presupuesto ajustado.",price:"desde $60.000",
+   desc:"Opción económica y limpia. Ideal para presupuesto ajustado. Bien ubicado.",price:"desde $60.000",
    tags:[],maps:"https://www.google.com/maps/search/Hotel+RM+Barrancabermeja"},
-  {name:"Residencias Las Delicias",stars:"★★",cat:"economico",
+  {name:"Residencias Las Delicias",stars:"★★",cat:"economico",img:IMG.delicias,
    addr:"Calle 50 4-16, Sector Comercial",phone:"+57 7 6110492",
    amenities:["Aire Acond.","TV","Zona Comercial"],
-   desc:"Residencias económicas en el centro. Acceso a todos los servicios.",price:"desde $50.000",
+   desc:"Residencias económicas en el centro. Acceso a todos los servicios de la ciudad.",price:"desde $50.000",
    tags:[],maps:"https://www.google.com/maps/search/Residencias+Las+Delicias+Barrancabermeja"}
 ];
 
 const restaurants = [
-  {name:"Búfalo Senta'o",emoji:"🦬",type:"Hamburguesas · Comida Rápida",cat:"rapida",
+  {name:"Búfalo Senta'o",emoji:"🦬",type:"Hamburguesas · Comida Rápida",cat:"rapida",img:IMG.bufalo,
    addr:"Calle 50 25-47",phone:"+57 607 6262929",rating:"⭐ 4.5",price:"$",
-   desc:"#1 en TripAdvisor. Hamburguesas de búfalo, papas criollas y yuca frita.",
+   desc:"#1 en TripAdvisor Barrancabermeja. Hamburguesas artesanales de búfalo, papas criollas y yuca frita. Ambiente muy popular entre locales.",
    maps:"https://www.google.com/maps/search/Bufalo+Sentao+Barrancabermeja"},
-  {name:"La Corte Casa de Carnes",emoji:"🥩",type:"Carnes · Parrilla",cat:"carnes",
+  {name:"La Corte Casa de Carnes",emoji:"🥩",type:"Carnes · Parrilla Colombiana",cat:"carnes",img:IMG.lacorte,
    addr:"Cl. 58 #18-17",rating:"⭐ 4.6",price:"$$$",
-   desc:"Cortes premium, ceviche y ambiente íntimo. Favorito para celebraciones.",
+   desc:"Cortes premium, ceviche de río y ambiente íntimo. Favorito para celebraciones. Excelente servicio y carta variada.",
    maps:"https://restaurantguru.com/La-corte-casa-de-carnes-Barrancabermeja"},
-  {name:"Muelle del Río — Puesto #7",emoji:"🐟",type:"Pescado Típico · Al Aire Libre",cat:"tipico",
+  {name:"Muelle del Río — Puesto #7",emoji:"🐟",type:"Pescado Típico · Al Aire Libre",cat:"tipico",img:IMG.muelle_r,
    addr:"Paseo del Muelle, Río Magdalena",rating:"⭐ 4.7",price:"$",
-   desc:"El bocachico frito sudado más auténtico de la ciudad. Vista al río.",
+   desc:"El bocachico frito sudado más auténtico de la ciudad. Mesa al aire libre con vista directa al río Magdalena. Una experiencia única.",
    maps:"https://www.google.com/maps/search/Muelle+Barrancabermeja+restaurante"},
-  {name:"La Isla de los Mangos",emoji:"🌿",type:"Típico · Naturaleza",cat:"tipico",
+  {name:"La Isla de los Mangos",emoji:"🌿",type:"Típico Ribereño · Naturaleza",cat:"tipico",img:IMG.isla,
    addr:"Ciénaga El Llanito (acceso por lancha)",rating:"⭐ 4.8",price:"$$",
-   desc:"Mesas sobre botes en la ciénaga. Una experiencia completamente única.",
+   desc:"Mesas sobre botes en la ciénaga. Viuda de pescado y bocachico preparados al momento. Una experiencia completamente única en Colombia.",
    maps:"https://www.google.com/maps/search/La+Isla+de+los+Mangos+Barrancabermeja"},
-  {name:"Pig-Good",emoji:"🐖",type:"Cerdo · Asado Colombiano",cat:"carnes",
+  {name:"Pig-Good",emoji:"🐖",type:"Cerdo · Asado Colombiano",cat:"carnes",img:IMG.piggood,
    addr:"Cra 12 55-45, Pueblo Nuevo",phone:"+57 314 2374809",rating:"⭐ 4.3",price:"$",
-   desc:"Especialistas en cerdo asado. Chicharrón, costilla y morcilla criolla.",
+   desc:"Especialistas en cerdo asado artesanal. Chicharrón crujiente, costilla ahumada y morcilla criolla. Porciones generosas.",
    maps:"https://www.google.com/maps/search/Pig+Good+Barrancabermeja"},
-  {name:"Cazuela del Magdalena",emoji:"🍜",type:"Cazuelas · Pescado",cat:"tipico",
+  {name:"Cazuela del Magdalena",emoji:"🍜",type:"Cazuelas · Pescado de Río",cat:"tipico",img:IMG.cazuela,
    addr:"Cl. 52 #15-31",rating:"⭐ 4.4",price:"$$",
-   desc:"Cazuelas de pescado del Magdalena entre $33.000–$50.000.",
+   desc:"Cazuelas de bagre y bocachico del Magdalena entre $33.000–$50.000. Recetas tradicionales con ingredientes frescos del río.",
    maps:"https://www.google.com/maps/search/cazuela+magdalena+Barrancabermeja"},
-  {name:"Club Náutico — Restaurante",emoji:"⛵",type:"Mariscos · Premium",cat:"mariscos",
+  {name:"Club Náutico — Restaurante",emoji:"⛵",type:"Mariscos · Premium · Vista al Agua",cat:"mariscos",img:IMG.nautico,
    addr:"Club Náutico, Ciénaga San Silvestre",rating:"⭐ 4.5",price:"$$$",
-   desc:"Vista a la ciénaga. Mariscos frescos y ambiente exclusivo.",
+   desc:"Vista privilegiada a la ciénaga San Silvestre. Mariscos frescos, langostinos y ambiente exclusivo. Reserva con anticipación.",
    maps:"https://www.google.com/maps/search/Club+Nautico+Barrancabermeja+restaurante"},
-  {name:"Restaurante GHL Style",emoji:"🏨",type:"Internacional · Buffet",cat:"mariscos",
+  {name:"Restaurante GHL Style",emoji:"🏨",type:"Internacional · Buffet Premium",cat:"mariscos",img:IMG.ghl_r,
    addr:"Cra 8A N°51-08 (Hotel GHL)",phone:"+57 607 6972533",rating:"⭐ 4.6",price:"$$$",
-   desc:"Buffet premium con terraza panorámica. Opciones veganas disponibles.",
+   desc:"Buffet premium con terraza panorámica. Opciones vegetarianas y veganas disponibles. Vista a la refinería y al río.",
    maps:"https://www.google.com/maps/search/GHL+Style+Barrancabermeja+restaurante"}
 ];
 
@@ -730,36 +805,44 @@ const sectors = [
 
 const foods = {
   platos:[
-    {i:"🐟",n:"Bagre Frito Sudado",d:"El plato más representativo. Bagre del Magdalena frito y terminado en hogao."},
-    {i:"🐠",n:"Bocachico Sudado",d:"El pez más consumido del río, cocido lento con tomate, cebolla y cilantro."},
-    {i:"👰",n:"Viuda de Pescado",d:"Cocción ancestral con plátano verde, yuca y ñame. Herencia del Magdalena Medio."},
-    {i:"🥘",n:"Sancocho de Bagre",d:"Sopa contundente con trozos de bagre, plátano, papa y maíz."},
-    {i:"🍳",n:"Patacón con Hogao",d:"Plátano verde aplastado y frito con salsa de tomate y cebolla."},
-    {i:"🍚",n:"Arroz de Lisa",d:"Arroz con la lisa del Magdalena, ajo y comino. Sabor muy profundo."}
+    {i:"🐟",n:"Bagre Frito Sudado",img:IMG.bagre,d:"El plato más representativo. Bagre del Magdalena frito y terminado en hogao criollo con tomate y cebolla."},
+    {i:"🐠",n:"Bocachico Sudado",img:IMG.bocachico,d:"El pez más consumido del río, cocido lento con tomate, cebolla y cilantro. Sabor auténtico del Magdalena Medio."},
+    {i:"👰",n:"Viuda de Pescado",img:IMG.viuda,d:"Cocción ancestral con plátano verde, yuca y ñame. Herencia culinaria del Magdalena Medio transmitida por generaciones."},
+    {i:"🥘",n:"Sancocho de Bagre",img:IMG.sancocho,d:"Sopa contundente con trozos de bagre, plátano, papa y maíz. Plato ideal para el almuerzo familiar."},
+    {i:"🍳",n:"Patacón con Hogao",img:IMG.patacon,d:"Plátano verde aplastado y frito, servido con salsa de tomate y cebolla caramelizada. Acompañante indispensable."},
+    {i:"🍚",n:"Arroz de Lisa",img:IMG.arrozlisa,d:"Arroz preparado con la lisa del Magdalena, ajo y comino. Sabor profundo y característico de la cocina ribereña."}
   ],
   peces:["Bagre","Bocachico","Pincho","Comelón","Hachita","Sardina","Arenque","Chango","Sardina Blanca","Moncholo","Barracuda","Aliso","Doncella","Chivo Español","Anguila Criolla","Mojarra Azul","Mojarra Amarilla","Pácora"],
   prep:[
-    {i:"🔥",n:"Frito",d:"Sazonado y frito en aceite caliente hasta quedar crujiente por fuera y jugoso por dentro."},
-    {i:"💧",n:"Sudado",d:"Cocción lenta con hogao, hierbas y especias. Concentra los sabores del pescado."},
-    {i:"👰",n:"Viuda",d:"Técnica ancestral con tubérculos y plátano. Define la identidad culinaria local."},
-    {i:"🌿",n:"Frito Sudado",d:"La más típica: frito primero, terminado en salsa. Combina texturas crujiente y melosa."}
+    {i:"🔥",n:"Frito",d:"Sazonado y frito en aceite caliente hasta quedar crujiente por fuera y jugoso por dentro. La técnica más popular."},
+    {i:"💧",n:"Sudado",d:"Cocción lenta con hogao, hierbas y especias. Concentra todos los sabores del pescado en una salsa cremosa."},
+    {i:"👰",n:"Viuda",d:"Técnica ancestral con tubérculos y plátano. Define la identidad culinaria del Magdalena Medio."},
+    {i:"🌿",n:"Frito Sudado",d:"La más típica: frito primero, terminado en salsa. Combina texturas crujiente y melosa en un solo plato."}
   ]
 };
 
 const faqs = [
   {q:"¿Cómo llego a Barrancabermeja?",a:"Por aire al Aeropuerto Yariguíes (EJA), por tierra desde Bucaramanga (≈2h) o desde Bogotá (≈7-8h). Taxi aeropuerto–ciudad: tarifa fija $18.000."},
-  {q:"¿Cuál es la mejor época para visitar?",a:"Diciembre a mediados de febrero. Menos lluvias y temperaturas más agradables."},
-  {q:"¿Qué plato probar sí o sí?",a:"El bagre frito sudado es obligatorio. También el bocachico sudado y la viuda de pescado."},
-  {q:"¿Puedo visitar la refinería Ecopetrol?",a:"El Museo Nacional del Petróleo es accesible. Para el complejo industrial se requieren permisos especiales."},
-  {q:"¿Cuánto dinero necesito por día?",a:"Presupuesto promedio: $80.000–$150.000 COP/día. Alojamiento desde $50.000 hasta $200.000."},
-  {q:"¿Hay Uber o inDrive?",a:"InDrive opera en Barrancabermeja. Los taxis regulados con tarifas fijas por sectores son el servicio más confiable."}
+  {q:"¿Cuál es la mejor época para visitar?",a:"Diciembre a mediados de febrero. Menos lluvias y temperaturas más agradables. La ciudad es calurosa todo el año (28°C promedio)."},
+  {q:"¿Qué plato probar sí o sí?",a:"El bagre frito sudado es obligatorio. También el bocachico sudado, la viuda de pescado y el patacón con hogao."},
+  {q:"¿Puedo visitar la refinería Ecopetrol?",a:"El Museo Nacional del Petróleo es accesible para todos. Para el complejo industrial de Ecopetrol se requieren permisos especiales."},
+  {q:"¿Cuánto dinero necesito por día?",a:"Presupuesto promedio: $80.000–$150.000 COP/día. Alojamiento desde $50.000 hasta $200.000 por noche."},
+  {q:"¿Hay Uber o inDrive?",a:"InDrive opera en Barrancabermeja. Los taxis regulados con tarifas fijas por sectores son el servicio más confiable y seguro."}
 ];
 
-// ════════════════════════════════════════
-// SPLASH — CORRECCIÓN DEFINITIVA
-// Usa DOMContentLoaded + setTimeout doble
-// para garantizar funcionamiento en GitHub Pages
-// ════════════════════════════════════════
+// ══════════════════════════════════════
+// IMAGEN CON FALLBACK
+// ══════════════════════════════════════
+function imgTag(src, alt, fallbackEmoji, cls='') {
+  return `<img src="${src}" alt="${alt}" class="lazy ${cls}" 
+    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+    onload="this.classList.add('loaded')">
+    <div class="${cls.includes('pmc') ? 'pmc-img-fallback' : cls.includes('rcard') ? 'rcard-img-fallback' : cls.includes('hcard') ? 'hcard-img-fallback' : cls.includes('recard') ? 'recard-img-fallback' : 'panel-img-fallback'}" style="display:none">${fallbackEmoji}</div>`;
+}
+
+// ══════════════════════════════════════
+// SPLASH
+// ══════════════════════════════════════
 (function initSplash() {
   function hideSplash() {
     document.getElementById('splash').classList.add('out');
@@ -768,17 +851,11 @@ const faqs = [
       if (s) s.style.display = 'none';
     }, 600);
   }
-
-  // Arrancar animación de barra inmediatamente
   setTimeout(() => {
     const f = document.getElementById('spFill');
     if (f) f.style.width = '100%';
   }, 50);
-
-  // Ocultar splash a los 2.2s pase lo que pase
   const splashTimer = setTimeout(hideSplash, 2200);
-
-  // Si el DOM carga antes, también ocultar
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       clearTimeout(splashTimer);
@@ -786,7 +863,6 @@ const faqs = [
       bootApp();
     });
   } else {
-    // Ya cargó (inline script ejecutado tarde)
     clearTimeout(splashTimer);
     setTimeout(hideSplash, 2200);
     bootApp();
@@ -803,36 +879,33 @@ function bootApp() {
   renderSectors();
   renderMbars();
   renderHomeScrolls();
-  fetchWeather(); // API clima
+  fetchWeather();
 }
 
-// Fallback: si por alguna razón bootApp no se llamó, llamarlo al cargar la ventana
 window.addEventListener('load', function() {
   bootApp();
-  // Asegurarse que splash desaparece
   setTimeout(function(){
     document.getElementById('splash').classList.add('out');
   }, 100);
 });
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 // RELOJ + SALUDO
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 function updateClock() {
   const n = new Date();
   document.getElementById('sTime').textContent =
     n.getHours().toString().padStart(2,'0') + ':' + n.getMinutes().toString().padStart(2,'0');
 }
-
 function updateGreeting() {
   const h = new Date().getHours();
   const g = h < 12 ? 'Buenos días 👋' : h < 18 ? 'Buenas tardes 👋' : 'Buenas noches 👋';
   document.getElementById('hTitle').textContent = g;
 }
 
-// ════════════════════════════════════════
-// API CLIMA — Open-Meteo (100% gratis, sin key)
-// ════════════════════════════════════════
+// ══════════════════════════════════════
+// API CLIMA
+// ══════════════════════════════════════
 async function fetchWeather() {
   try {
     const r = await fetch(
@@ -846,7 +919,6 @@ async function fetchWeather() {
     const d = await r.json();
     const c = d.current;
     const day = d.daily;
-
     const temp = Math.round(c.temperature_2m);
     const feel = Math.round(c.apparent_temperature);
     const hum  = c.relative_humidity_2m;
@@ -854,8 +926,6 @@ async function fetchWeather() {
     const max  = Math.round(day.temperature_2m_max[0]);
     const min  = Math.round(day.temperature_2m_min[0]);
     const {ico, desc} = wCode(c.weather_code);
-
-    // Clima screen
     document.getElementById('climaIco').textContent  = ico;
     document.getElementById('climaTemp').textContent = temp + '°C';
     document.getElementById('climaDesc').textContent = desc;
@@ -864,15 +934,11 @@ async function fetchWeather() {
     document.getElementById('ic-hum').textContent    = hum + '% HR';
     document.getElementById('ic-wind').textContent   = wind + ' km/h';
     document.getElementById('ic-feel').textContent   = feel + '°C';
-
-    // Home
     document.getElementById('homeTemp').textContent     = temp + '°';
     document.getElementById('homeWsTemp').textContent   = temp + '°C';
     document.getElementById('homeWsDesc').textContent   = ico + ' ' + desc + ' · Mín ' + min + '° Máx ' + max + '°';
     document.getElementById('homeWsIco').textContent    = ico;
-
   } catch(e) {
-    // Si falla la API, mostrar valores por defecto sin romper la app
     ['climaTemp','homeWsTemp'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.textContent = '28°C';
@@ -885,20 +951,19 @@ async function fetchWeather() {
     });
   }
 }
-
 function wCode(code) {
-  if (code === 0)       return {ico:'☀️', desc:'Despejado'};
-  if (code <= 3)        return {ico:'⛅', desc:'Parcialmente nublado'};
-  if (code <= 49)       return {ico:'🌫', desc:'Neblina'};
-  if (code <= 67)       return {ico:'🌧', desc:'Lluvia'};
-  if (code <= 82)       return {ico:'🌦', desc:'Chubascos'};
-  if (code <= 99)       return {ico:'⛈', desc:'Tormenta'};
+  if (code === 0)   return {ico:'☀️', desc:'Despejado'};
+  if (code <= 3)    return {ico:'⛅', desc:'Parcialmente nublado'};
+  if (code <= 49)   return {ico:'🌫', desc:'Neblina'};
+  if (code <= 67)   return {ico:'🌧', desc:'Lluvia'};
+  if (code <= 82)   return {ico:'🌦', desc:'Chubascos'};
+  if (code <= 99)   return {ico:'⛈', desc:'Tormenta'};
   return {ico:'🌤', desc:'Cálido y húmedo'};
 }
 
-// ════════════════════════════════════════
-// SHARE API
-// ════════════════════════════════════════
+// ══════════════════════════════════════
+// SHARE
+// ══════════════════════════════════════
 async function shareApp() {
   const data = {title:'BarrancaXperience', text:'🏙 Guía turística de Barrancabermeja', url: location.href};
   if (navigator.share) {
@@ -910,21 +975,19 @@ async function shareApp() {
     } catch(e) { toast('📤 ' + location.href); }
   }
 }
-
 async function sharePlace(name, url) {
   if (navigator.share) {
     try { await navigator.share({title: name + ' – BarrancaXperience', url}); return; } catch(e) {}
   }
   try { await navigator.clipboard.writeText(url); toast('🔗 Link copiado'); } catch(e) {}
 }
-
 function openMapa() {
   window.open('https://www.google.com/maps/place/Barrancabermeja,+Santander/@7.0639,-73.8570,13z', '_blank');
 }
 
-// ════════════════════════════════════════
-// NAVIGATION
-// ════════════════════════════════════════
+// ══════════════════════════════════════
+// NAVEGACIÓN
+// ══════════════════════════════════════
 const SCR = {
   home:      {t:'Buenos días 👋',  s:'Barrancabermeja · Santander', a:'🔔', nav:'home'},
   lugares:   {t:'Explorar',        s:'Sitios turísticos',           a:'🔍', nav:'lugares'},
@@ -959,22 +1022,29 @@ function hdrClick() {
   else toast('📍 Barrancabermeja, Santander · Colombia');
 }
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 // RENDERS
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 let plFilter = 'todos';
 
 function renderPlaces(list) {
   document.getElementById('plList').innerHTML = list.map(p => {
     const i = places.indexOf(p);
     return `<div class="rcard" onclick="openPlace(${i})">
-      <div class="rc-ico">${p.emoji}</div>
-      <div class="rc-body">
-        <div class="rc-name">${p.name}</div>
-        <div class="rc-desc">${p.desc}</div>
-        <div class="rc-tags">${p.tags.map(t=>`<span class="rtag">${t}</span>`).join('')}</div>
+      <div class="rcard-img">
+        ${imgTag(p.img, p.name, p.emoji)}
       </div>
-      <div class="rc-arr">›</div>
+      <div class="rcard-body">
+        <div class="rcard-top">
+          <div class="rcard-emoji">${p.emoji}</div>
+          <div class="rc-body">
+            <div class="rc-name">${p.name}</div>
+            <div class="rc-desc">${p.desc}</div>
+            <div class="rc-tags">${p.tags.map(t=>`<span class="rtag">${t}</span>`).join('')}</div>
+          </div>
+          <div class="rc-arr">›</div>
+        </div>
+      </div>
     </div>`;
   }).join('');
 }
@@ -1000,6 +1070,10 @@ function openPlace(i) {
   document.getElementById('pTitle').textContent = p.name;
   document.getElementById('pSub').textContent   = p.tags.join(' · ');
   document.getElementById('pBody').innerHTML = `
+    <div class="panel-img-hero">
+      <img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:var(--r2)"
+        onerror="this.parentElement.innerHTML='<div class=panel-img-fallback>${p.emoji}</div>'">
+    </div>
     <div class="ps-sec">
       <div class="ps-lbl">Descripción</div>
       <div class="ps-txt">${p.full}</div>
@@ -1028,6 +1102,9 @@ function openPlace(i) {
 function renderHotels(list) {
   document.getElementById('htList').innerHTML = list.map(h => `
     <div class="hcard">
+      <div class="hcard-img">
+        ${imgTag(h.img, h.name, '🏨')}
+      </div>
       <div class="hc-top">
         <div class="hc-ico">🏨</div>
         <div class="hc-info">
@@ -1075,9 +1152,16 @@ function renderFood(tab) {
     renderRest(restaurants);
   } else if (tab === 'platos') {
     c.innerHTML = `<div class="list">${foods.platos.map(f=>`
-      <div style="background:var(--w);border-radius:var(--r);box-shadow:var(--sh);padding:13px;display:flex;gap:11px;align-items:flex-start">
-        <div style="font-size:1.9rem;flex-shrink:0">${f.i}</div>
-        <div><div style="font-size:.85rem;font-weight:700;margin-bottom:3px">${f.n}</div><div style="font-size:.72rem;color:var(--ink2);line-height:1.5">${f.d}</div></div>
+      <div class="plato-card">
+        <div class="plato-img">
+          <img src="${f.img}" alt="${f.n}" style="width:100%;height:100%;object-fit:cover;display:block"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="plato-img-fallback" style="display:none">${f.i}</div>
+        </div>
+        <div class="plato-body">
+          <div style="font-size:1.6rem;flex-shrink:0">${f.i}</div>
+          <div><div style="font-size:.85rem;font-weight:700;margin-bottom:3px">${f.n}</div><div style="font-size:.72rem;color:var(--ink2);line-height:1.5">${f.d}</div></div>
+        </div>
       </div>`).join('')}</div>`;
   } else if (tab === 'peces') {
     c.innerHTML = `
@@ -1104,20 +1188,25 @@ function renderRest(list) {
   const c = document.getElementById('rlist'); if (!c) return;
   c.innerHTML = list.map(r=>`
     <div class="recard">
-      <div class="re-top">
-        <div class="re-ico">${r.emoji}</div>
-        <div class="re-info">
-          <div class="re-name">${r.name}</div>
-          <div class="re-type">${r.type}</div>
-          <div class="re-rating">${r.rating} · <span style="font-size:.62rem;color:var(--ink3)">${r.price==='$'?'Económico':r.price==='$$'?'Moderado':'Premium'}</span></div>
-        </div>
+      <div class="recard-img">
+        ${imgTag(r.img, r.name, r.emoji)}
       </div>
-      <div class="re-addr">📍 ${r.addr}</div>
-      <div class="re-desc">${r.desc}</div>
-      <div class="re-btns">
-        ${r.phone?`<a href="tel:${r.phone}" class="rbtn rbtn-c">📞 Llamar</a>`:''}
-        ${r.phone?`<a href="https://wa.me/${r.phone.replace(/\D/g,'')}" target="_blank" class="rbtn rbtn-w">💬 WhatsApp</a>`:''}
-        <a href="${r.maps}" target="_blank" class="rbtn rbtn-m">🗺 Mapa</a>
+      <div class="recard-body">
+        <div class="re-top">
+          <div class="re-ico">${r.emoji}</div>
+          <div class="re-info">
+            <div class="re-name">${r.name}</div>
+            <div class="re-type">${r.type}</div>
+            <div class="re-rating">${r.rating} · <span style="font-size:.62rem;color:var(--ink3)">${r.price==='$'?'Económico':r.price==='$$'?'Moderado':'Premium'}</span></div>
+          </div>
+        </div>
+        <div class="re-addr">📍 ${r.addr}</div>
+        <div class="re-desc">${r.desc}</div>
+        <div class="re-btns">
+          ${r.phone?`<a href="tel:${r.phone}" class="rbtn rbtn-c">📞 Llamar</a>`:''}
+          ${r.phone?`<a href="https://wa.me/${r.phone.replace(/\D/g,'')}" target="_blank" class="rbtn rbtn-w">💬 WhatsApp</a>`:''}
+          <a href="${r.maps}" target="_blank" class="rbtn rbtn-m">🗺 Mapa</a>
+        </div>
       </div>
     </div>`).join('');
 }
@@ -1150,19 +1239,28 @@ function renderMbars() {
 function renderHomeScrolls() {
   document.getElementById('homeCards').innerHTML = places.slice(0,6).map((p,i)=>`
     <div class="pmc" onclick="openPlace(${i})">
-      <div class="pmc-img">${p.emoji}</div>
+      <div class="pmc-img">
+        <img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;display:block"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="pmc-img-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:2.6rem;background:var(--bg)">${p.emoji}</div>
+      </div>
       <div class="pmc-body"><div class="pmc-name">${p.name}</div><div class="pmc-tag">${p.tags[0]}</div></div>
     </div>`).join('');
+
   document.getElementById('homeHotels').innerHTML = hotels.slice(0,4).map(h=>`
     <div class="pmc" style="width:152px" onclick="go('hoteles')">
-      <div class="pmc-img">🏨</div>
+      <div class="pmc-img">
+        <img src="${h.img}" alt="${h.name}" style="width:100%;height:100%;object-fit:cover;display:block"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="pmc-img-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:2.6rem;background:var(--bg)">🏨</div>
+      </div>
       <div class="pmc-body"><div class="pmc-name">${h.name.replace('Hotel ','')}</div><div class="pmc-tag">${h.stars} · ${h.price}</div></div>
     </div>`).join('');
 }
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 // PANELS
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 function openPanel(type) {
   const cfgs = {
     rutas:{
@@ -1188,14 +1286,14 @@ function openPanel(type) {
           </div>
         </div>
         <div class="ps-sec"><div class="ps-lbl">🌿 Día 2 — Naturaleza</div>
-          <div class="ps-txt">Excursión a <strong>El Llanito</strong>: ciénaga, delfines rosados, aves exóticas y pesca artesanal. Almuerzo con viuda de pescado en la comunidad. Taxi: $20.000.</div>
+          <div class="ps-txt">Excursión a <strong>El Llanito</strong>: ciénaga, delfines rosados, aves exóticas y pesca artesanal. Almuerzo con viuda de pescado en la comunidad. También visita la ciénaga San Silvestre. Taxi: $20.000.</div>
         </div>`,
       act:`<a href="https://www.google.com/maps/place/Barrancabermeja" target="_blank" class="pa-btn pa-sec">🗺 Abrir mapa</a><button class="pa-btn pa-pri" onclick="toast('📍 Ruta guardada');closePanel()">💾 Guardar</button>`
     },
     economia:{
       emoji:'🛢',title:'Economía',sub:'La Ciudad del Petróleo',
       body:`
-        <div class="ps-sec"><div class="ps-lbl">Ecopetrol S.A.</div><div class="ps-txt">En Barrancabermeja está la refinería de petróleo más grande de Colombia. Reconocida entre las más grandes y antiguas de Latinoamérica.</div></div>
+        <div class="ps-sec"><div class="ps-lbl">Ecopetrol S.A.</div><div class="ps-txt">En Barrancabermeja está la refinería de petróleo más grande de Colombia. Reconocida entre las más grandes y antiguas de Latinoamérica. Opera desde 1922.</div></div>
         <div class="ps-sec"><div class="ps-lbl">Cifras clave</div>
           <div style="display:flex;flex-direction:column;gap:7px">
             ${[['252.000','Barriles refinados por día'],['85%','Productos refinados nacionales'],['90%','Petroquímicos del país'],['206 ha','Área del complejo industrial'],['50+','Plantas de procesamiento']].map(([v,l])=>`
@@ -1205,7 +1303,7 @@ function openPanel(type) {
               </div>`).join('')}
           </div>
         </div>
-        <div class="ps-sec"><div class="ps-lbl">Otros sectores</div><div class="ps-txt">Operación portuaria, servicios logísticos, ganadería, pesca artesanal en el Magdalena y comercio regional.</div></div>`,
+        <div class="ps-sec"><div class="ps-lbl">Otros sectores</div><div class="ps-txt">Operación portuaria fluvial, servicios logísticos, ganadería extensiva, pesca artesanal en el Magdalena y comercio regional del Magdalena Medio.</div></div>`,
       act:`<a href="https://www.ecopetrol.com.co" target="_blank" class="pa-btn pa-sec">🌐 Ecopetrol</a><button class="pa-btn pa-pri" onclick="closePanel()">← Volver</button>`
     },
     faq:{
@@ -1275,9 +1373,9 @@ function sendContact() {
   setTimeout(closePanel, 1500);
 }
 
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 // TOAST
-// ════════════════════════════════════════
+// ══════════════════════════════════════
 let _toastT;
 function toast(msg) {
   const t = document.getElementById('toast');
